@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/com/tomale/gds">
+    <!-- 
+    <file>data/splashscreen.png</file>
+    <file compressed="true">dialog.ui</file>
+    <file preprocess="xml-stripblanks">menumarkup.xml</file>
+    <file alias="example.css">data/example.css</file> 
+    -->
+    <file compressed="true">resources/ui/main.glade</file>
+    <file compressed="true">resources/ui/editor.sql.glade</file>
+  </gresource>
+</gresources>
