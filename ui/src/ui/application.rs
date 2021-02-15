@@ -9,6 +9,7 @@ use crate::constants::{ APP_ID, WINDOW_UI, EDITOR_SQL_UI };
 
 
 enum AppEvent {
+    FileNew,
     Quit
 }
 
@@ -45,7 +46,7 @@ impl Application {
         };
 
         application.setup_actions();
-        application.attach_signal_handlers();
+        application.attach_signal_handlers(&builder);
         application.setup_receiver(receiver);
 
         return Ok(application);
@@ -57,7 +58,13 @@ impl Application {
     }
 
     fn setup_actions(&self) {
-        action!(self.app, "app.quit", 
+        action!(self.app, "file.new",
+            clone!(@strong self.sender as sender => move |_, _| {
+                sender.send(AppEvent::FileNew).unwrap();
+            })
+        );
+
+        action!(self.app, "quit", 
             clone!(@strong self.sender as sender => move |_, _| {
                 sender.send(AppEvent::Quit).unwrap();
             })
@@ -73,7 +80,11 @@ impl Application {
                 @strong self.window as window => move |event| {
 
                 match event {
+                    AppEvent::FileNew => {
+                        println!("File New");
+                    }
                     AppEvent::Quit => {
+                        println!("quit");
                         app.quit();
                     }
                 }
@@ -83,7 +94,7 @@ impl Application {
         );
     }
 
-    fn attach_signal_handlers(&self) {
+    fn attach_signal_handlers(&self, builder: &gtk::Builder) {
         self.app.connect_activate(
             clone!(@weak self.window as window => move |app| {
                 window.set_application(Some(app));
