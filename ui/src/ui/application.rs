@@ -1,11 +1,13 @@
 use gio::prelude::*;
 use gtk::prelude::*;
-use gtk_macros::{ get_widget, action };
+use gtk_macros::{ /* get_widget ,*/ action };
 use glib::clone;
 
 use std::env;
 
-use crate::constants::{ APP_ID, WINDOW_UI, EDITOR_SQL_UI };
+use crate::constants::{ APP_ID, WINDOW_UI, /* EDITOR_SQL_UI */ };
+
+use crate::ui::providers::{ Providers };
 
 
 enum AppEvent {
@@ -49,7 +51,7 @@ impl Application {
         };
 
         application.setup_actions();
-        application.attach_signal_handlers(&builder);
+        application.attach_signal_handlers();
         application.setup_receiver(receiver);
 
         return Ok(application);
@@ -97,13 +99,17 @@ impl Application {
         receiver.attach(
             None,
             clone!(
+                // @strong self as this,
                 @strong self.sender as sender, 
                 @strong self.app as app, 
                 @strong self.window as window => move |event| {
 
                 match event {
                     AppEvent::FileNew => {
-                        println!("File New");
+                        // println!("File New");
+                        // this.show_connection_providers();
+                        let providers = Providers {};
+                        providers.show();
                     }
                     AppEvent::Quit => {
                         println!("quit");
@@ -125,7 +131,7 @@ impl Application {
         );
     }
 
-    fn attach_signal_handlers(&self, builder: &gtk::Builder) {
+    fn attach_signal_handlers(&self) {
         self.app.connect_activate(
             clone!(@weak self.window as window => move |app| {
                 window.set_application(Some(app));
@@ -140,4 +146,9 @@ impl Application {
             })
         );
     }
+
+    // fn show_connection_providers(&self) {
+    //     let providers = Providers {};
+    //     providers.show();
+    // }
 }
