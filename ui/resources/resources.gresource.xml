@@ -9,5 +9,6 @@
     -->
     <file compressed="true">resources/ui/main.glade</file>
     <file compressed="true">resources/ui/editor.sql.glade</file>
+    <file compressed="true">resources/ui/connection-providers.glade</file>
   </gresource>
 </gresources>

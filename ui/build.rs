@@ -23,4 +23,5 @@ fn main() {
 
     println!("cargo:rerun-if-changed=resources/ui/main.glade");
     println!("cargo:rerun-if-changed=resources/ui/editor.sql.glade");
+    println!("cargo:rerun-if-changed=resources/ui/connection-proviers.glade");
 }
