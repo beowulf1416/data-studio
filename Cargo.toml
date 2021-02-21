@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "common",
+    "cli",
+    "ui",
+    "providers/postgresql"
+]

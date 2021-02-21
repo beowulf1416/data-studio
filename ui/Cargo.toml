@@ -12,3 +12,5 @@ gtk = { version = "0.9", features = ["v3_22"] }
 gtk-macros = ""
 gio = { version = "0.9", features = ["v2_46"] }
 glib = ""
+
+common = ""

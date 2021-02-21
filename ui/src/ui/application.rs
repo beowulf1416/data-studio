@@ -21,7 +21,7 @@ enum AppEvent {
 pub struct Application {
     app: gtk::Application,
     window: gtk::ApplicationWindow,
-    sender: glib::Sender<AppEvent>
+    sender: glib::Sender<AppEvent>,
 }
 
 impl Application {
