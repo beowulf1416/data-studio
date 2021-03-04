@@ -3,5 +3,6 @@ members = [
     "common",
     "cli",
     "ui",
-    "providers/postgresql"
+    "providers/postgresql",
+    "providers/mysql"
 ]
