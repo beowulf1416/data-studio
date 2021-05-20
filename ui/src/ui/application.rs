@@ -7,7 +7,7 @@ use std::env;
 
 use crate::constants::{ APP_ID, WINDOW_UI, /* EDITOR_SQL_UI */ };
 
-use crate::ui::providers::{ Providers };
+// use crate::ui::providers::{ Providers };
 
 
 enum AppEvent {
@@ -20,7 +20,7 @@ enum AppEvent {
 
 pub struct Application {
     app: gtk::Application,
-    window: gtk::ApplicationWindow,
+    // window: gtk::ApplicationWindow,
     sender: glib::Sender<AppEvent>,
 }
 
@@ -33,7 +33,7 @@ impl Application {
         ).unwrap();
         
         let builder = gtk::Builder::from_resource(WINDOW_UI);
-        let window: gtk::ApplicationWindow = builder.get_object("window.main").unwrap();
+        // let window: gtk::ApplicationWindow = builder.get_object("window.main").unwrap();
 
         // let builder_tab = gtk::Builder::from_resource(EDITOR_SQL_UI);
         // let editors: gtk::Notebook = builder.get_object("window.main.editors").unwrap();
@@ -46,13 +46,13 @@ impl Application {
 
         let application = Self {
             app: gtk_app,
-            window: window,
+            // window: window,
             sender: sender
         };
 
         application.setup_actions();
-        application.attach_signal_handlers();
-        application.setup_receiver(receiver);
+        // application.attach_signal_handlers();
+        // application.setup_receiver(receiver);
 
         return Ok(application);
     }
@@ -95,6 +95,7 @@ impl Application {
         );
     }
 
+    /*
     fn setup_receiver(&self, receiver: glib::Receiver<AppEvent>) {
         receiver.attach(
             None,
@@ -130,7 +131,9 @@ impl Application {
             })
         );
     }
+    */
 
+    /*
     fn attach_signal_handlers(&self) {
         self.app.connect_activate(
             clone!(@weak self.window as window => move |app| {
@@ -146,6 +149,7 @@ impl Application {
             })
         );
     }
+    */
 
     // fn show_connection_providers(&self) {
     //     let providers = Providers {};

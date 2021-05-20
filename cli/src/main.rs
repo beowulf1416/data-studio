@@ -1,24 +1,33 @@
-// extern crate config;
-extern crate common;
+extern crate config;
+// extern crate common;
 
-// use std::collections::HashMap;
+extern crate clap;
+use clap::{Arg, App /*, SubCommand */ };
 
 use common::application::Application;
+use common::appconfig::ApplicationConfiguration;
+
 
 
 fn main() {
     println!("Hello, world!");
 
-    // let mut settings = config::Config::new();
-    // settings
-    //     .merge(config::File::with_name("config")).unwrap()
-    //     .merge(config::Environment::with_prefix("DS")).unwrap();
+    let matches = App::new("data-studio")
+        .arg(Arg::with_name("config")
+            .short("c")
+            .long("config")
+            .value_name("<file>")
+            .help("use specified configuration file"))
+        .get_matches();
 
-    // println!("{:?}", settings.try_into::<HashMap<String, String>>().unwrap());
+    let cfg = matches.value_of("config").unwrap_or("config.json");
 
-    let app = Application::new();
-    let providers = app.providers();
-    for provider in providers {
-        println!("{}", provider);
-    }
+    let mut settings = config::Config::new();
+    settings
+        .merge(config::File::with_name(cfg)).unwrap();
+
+    let cfg = settings.try_into::<ApplicationConfiguration>().unwrap();
+    let app = Application::new(cfg);
+
+    println!("{:?}", app.providers());
 }

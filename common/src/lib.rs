@@ -1,5 +1,5 @@
+pub mod appconfig;
 pub mod application;
-pub mod providers;
 
 #[cfg(test)]
 mod tests {
