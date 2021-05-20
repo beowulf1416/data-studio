@@ -20,7 +20,7 @@ enum AppEvent {
 
 pub struct Application {
     app: gtk::Application,
-    // window: gtk::ApplicationWindow,
+    window: gtk::ApplicationWindow,
     sender: glib::Sender<AppEvent>,
 }
 
@@ -33,7 +33,7 @@ impl Application {
         ).unwrap();
         
         let builder = gtk::Builder::from_resource(WINDOW_UI);
-        // let window: gtk::ApplicationWindow = builder.get_object("window.main").unwrap();
+        let window: gtk::ApplicationWindow = builder.get_object("window.main").unwrap();
 
         // let builder_tab = gtk::Builder::from_resource(EDITOR_SQL_UI);
         // let editors: gtk::Notebook = builder.get_object("window.main.editors").unwrap();
@@ -46,12 +46,12 @@ impl Application {
 
         let application = Self {
             app: gtk_app,
-            // window: window,
+            window: window,
             sender: sender
         };
 
         application.setup_actions();
-        // application.attach_signal_handlers();
+        application.attach_signal_handlers();
         // application.setup_receiver(receiver);
 
         return Ok(application);
@@ -71,7 +71,9 @@ impl Application {
 
         action!(self.app, "quit",
             clone!(@strong self.sender as sender => move |_, _| {
-                sender.send(AppEvent::Quit).unwrap();
+                if let Err(e) = sender.send(AppEvent::Quit) {
+                    println!("{:?}", e);
+                }
             })
         );
 
@@ -133,7 +135,6 @@ impl Application {
     }
     */
 
-    /*
     fn attach_signal_handlers(&self) {
         self.app.connect_activate(
             clone!(@weak self.window as window => move |app| {
@@ -149,7 +150,6 @@ impl Application {
             })
         );
     }
-    */
 
     // fn show_connection_providers(&self) {
     //     let providers = Providers {};
