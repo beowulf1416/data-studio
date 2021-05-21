@@ -7,7 +7,7 @@ use std::env;
 
 use crate::constants::{ APP_ID, WINDOW_UI, /* EDITOR_SQL_UI */ };
 
-// use crate::ui::providers::{ Providers };
+use crate::ui::providers::{ ProviderDialog };
 
 
 #[derive(Copy, Clone)]
@@ -141,6 +141,8 @@ impl MainWindow {
                         println!("connection add");
                         // application.show_connection_add_window();
                         // show_connection_add_window();
+                        let w = window.clone();
+                        ProviderDialog::show(&w.upcast::<gtk::Window>());
                     }
                     // AppEvent::ConnectionRemove => {
                     //     println!("connection remove");
