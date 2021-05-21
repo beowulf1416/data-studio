@@ -6,12 +6,12 @@ pub struct Application {
 
 impl Application {
 
-    pub fn new(configuration: ApplicationConfiguration) -> Self {
+    pub fn new(configuration: ApplicationConfiguration) -> Result<Self, Box<dyn std::error::Error>> {
         let app = Self{
             configuration: configuration
         };
 
-        return app;
+        return Ok(app);
     }
 
     pub fn providers(&self) -> Vec<String> {
