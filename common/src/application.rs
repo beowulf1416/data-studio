@@ -1,5 +1,6 @@
 use crate::appconfig::ApplicationConfiguration;
 
+#[derive(Clone)]
 pub struct Application {
     pub configuration: ApplicationConfiguration
 }
