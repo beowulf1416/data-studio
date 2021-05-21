@@ -11,7 +11,7 @@ use std::env;
 use glib::Bytes;
 use gio::{resources_register, Resource};
 
-use ui::application::Application;
+use ui::main_window::MainWindow;
 
 
 fn initialize() -> Result<(), Box<dyn std::error::Error>> {
@@ -37,8 +37,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     //     println!("{}: {}", key, value);
     // }
 
-    let app = Application::new()?;
-    app.run();
+    let main_window = MainWindow::new()?;
+    main_window.run();
 
     return Ok(());
 }

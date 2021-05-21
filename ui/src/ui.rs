@@ -1,2 +1,2 @@
-pub mod application;
+pub mod main_window;
 pub mod providers;
