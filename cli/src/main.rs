@@ -26,8 +26,8 @@ fn main() {
     settings
         .merge(config::File::with_name(cfg)).unwrap();
 
-    let cfg = settings.try_into::<ApplicationConfiguration>().unwrap();
-    if let Ok(app) = Application::new(cfg) {
+    let appcfg = settings.try_into::<ApplicationConfiguration>().unwrap();
+    if let Ok(app) = Application::new(appcfg) {
         println!("{:?}", app.providers());
     }
 }
