@@ -44,20 +44,20 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .get_matches();
 
     let cfg = matches.value_of("config").unwrap_or("config.json");
-
     let mut settings = config::Config::new();
     settings
         .merge(config::File::with_name(cfg)).unwrap();
 
-    if let Ok(cfg) = settings.try_into::<ApplicationConfiguration>() {
-        if let Ok(app) = Application::new(cfg) {
+    if let Ok(appcfg) = settings.try_into::<ApplicationConfiguration>() {
+        if let Ok(app) = Application::new(appcfg) {
             if let Err(_) = gtk::init() {
                 println!("unable to initialize gtk toolkit");
             }
         
             initialize()?;
 
-            let main_window = MainWindow::new(app)?;
+            // let main_window = MainWindow::new(app)?;
+            let main_window = MainWindow::new()?;
             main_window.run();
 
             return Ok(());

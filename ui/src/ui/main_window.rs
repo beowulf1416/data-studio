@@ -22,8 +22,9 @@ enum AppEvent {
     // ConnectionEdit
 }
 
+
 pub struct MainWindow {
-    application: Application,
+    application: Option<Application>,
     app: gtk::Application,
     window: gtk::ApplicationWindow,
     // sender: glib::Sender<AppEvent>,
@@ -32,10 +33,11 @@ pub struct MainWindow {
 
 impl MainWindow {
 
-    pub fn new(application: Application) -> Result<Self, Box<dyn std::error::Error>> {
+    pub fn new() -> Result<Self, Box<dyn std::error::Error>> {
         let gtk_app = gtk::Application::new(
             Some(APP_ID),
             gio::ApplicationFlags::FLAGS_NONE
+            // gio::ApplicationFlags::HANDLES_COMMAND_LINE
         ).unwrap();
         
         let builder = gtk::Builder::from_resource(WINDOW_UI);
@@ -51,9 +53,8 @@ impl MainWindow {
 
         let (sender, receiver) = glib::MainContext::channel::<AppEvent>(glib::PRIORITY_DEFAULT);
 
-        // let this_app = application.clone();
         let main_window = Self {
-            application: application,
+            application: None,
             app: gtk_app,
             window: window,
             // sender: sender,
@@ -64,7 +65,56 @@ impl MainWindow {
         main_window.setup_actions(&sender);
         main_window.setup_receiver(receiver);
 
+
+        gtk_app.add_main_option(
+            "config",
+            glib::Char::new('c').unwrap(),
+            glib::OptionFlags::IN_MAIN,
+            glib::OptionArg::Filename,
+            "configuration file",
+            Some("configuration file")
+        );
+
+        gtk_app.connect_handle_local_options( move |_, args| {
+            if args.contains("config") {
+                // https://valadoc.org/glib-2.0/GLib.VariantType.html
+                match glib::VariantTy::new("*") {
+                    Ok(v) => {
+                        if let Some(cfg) = args.lookup_value("config", Some(&v)) {
+                            let config_file = cfg.to_string()
+                                .replace("b\'", "")
+                                .replace("'", "");
+
+                            let mut settings = config::Config::new();
+                            settings
+                                .merge(config::File::with_name(&config_file)).unwrap();
+
+                            if let Ok(appcfg) = settings.try_into::<ApplicationConfiguration>() {
+                                if let Ok(app) = Application::new(appcfg) {
+                                    main_window.set_application_object(app);
+                                } else {
+                                    println!("Unable to create application object");
+                                }
+                            } else {
+                                println!("unable to parse configuration file");
+                            }
+                        }
+                    }
+                    Err(e) => {
+                        println!("error {:?}", e);
+                    }
+                }
+            }
+            return -1;
+        });
+
         return Ok(main_window);
+    }
+
+    fn set_application_object(&self, application: Application) {
+        self.application = Some(application);
+
+        // return Ok(self);
     }
 
     pub fn run(&self) {
@@ -148,11 +198,15 @@ impl MainWindow {
                     AppEvent::ConnectionAdd => {
                         println!("connection add");
                         let w = window.clone();
-                        if let Ok(dialog) = ProviderDialog::new(&application) {
-                            let result = dialog.show(&w.upcast::<gtk::Window>());
-                            println!("response {:?}", result);
+                        if let Some(a) = application {
+                            if let Ok(dialog) = ProviderDialog::new(&a) {
+                                let result = dialog.show(&w.upcast::<gtk::Window>());
+                                println!("response {:?}", result);
+                            } else {
+                                println!("unable to show provider dialog");
+                            }
                         } else {
-                            println!("unable to show provider dialog");
+                            println!("application object not yet initialized");
                         }
                     }
                     // AppEvent::ConnectionRemove => {
@@ -169,6 +223,19 @@ impl MainWindow {
     }
 
     fn attach_signal_handlers(&self, sender: &glib::Sender<AppEvent>) {
+        // self.app.connect_command_line(
+        //     move |_,args| {
+        //         println!("connect_command_line");
+        //         println!("{:?}", args);
+
+        //         return 1;
+        //     }
+        // );
+        // self.connect_handle_local_options(move|_, args| {
+        //     println!("{:?}", args);
+        //     return -1;
+        // });
+
         self.app.connect_activate(
             clone!(@weak self.window as window => move |app| {
                 window.set_application(Some(app));

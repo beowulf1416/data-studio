@@ -2,7 +2,7 @@ use gio::prelude::*;
 use gtk::prelude::*;
 // use gdk::prelude::*;
 use glib::clone;
-use gtk_macros::{ /* get_widget ,*/ action };
+use gtk_macros::{ action };
 
 // use gtk_macros::{ action };
 use crate::constants::{ PROVIDERS_UI };
@@ -24,7 +24,15 @@ impl ProviderDialog {
         dialog.set_default_response(gtk::ResponseType::Cancel);
 
 
-        println!("{:?}", application.providers());
+        let lbr = gtk::ListBoxRow::new();
+        let text = gtk::Label::new(Some("test"));
+        lbr.add(&text);
+
+        let lb: gtk::ListBox = builder.get_object("providers.list").expect("no listbox found");
+        lb.add(&lbr);
+
+        // println!("{:?}", get_widget!(dialog, gtk::ListBox, providers));
+        // println!("{:?}", application.providers());
 
         // setup actions
         let actions = gio::SimpleActionGroup::new();
