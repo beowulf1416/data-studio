@@ -2,7 +2,7 @@ use gtk::{
     Window
 };
 
-struct MainWindow {
+pub struct MainWindow {
     window: Window
 }
 
