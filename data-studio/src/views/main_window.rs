@@ -1,77 +1,47 @@
-use gtk::{
-    prelude::BuilderExtManual,
-    Builder,
-    Inhibit,
-    Window,
-    prelude::WidgetExt,
-    prelude::GtkMenuItemExt,
+use relm4::{
+    gtk,
+    gtk::Builder,
+    Sender, 
+    Widgets
 };
 
-use relm_derive::Msg;
-use relm::{connect, Relm, Update, Widget, WidgetTest};
-
-use crate::models::application::Application;
 
 
-#[derive(Msg)]
-pub enum MainWindowMsg {
-    Quit
-}
+use crate::models::application_model::{
+    ApplicationMessage,
+    ApplicationModel
+};
 
 
-#[derive(Clone)]
+
 pub struct MainWindow {
-    application: Application,
-    window: Window
+    window: gtk::ApplicationWindow
 }
 
-impl Widget for MainWindow {
 
-    type Root = Window;
+impl Widgets<ApplicationModel, ()> for MainWindow {
+    type Root = gtk::ApplicationWindow;
 
-    fn root(&self) -> Self::Root {
-        return self.window.clone();
-    }
+    fn init_view(
+        model: &ApplicationModel, 
+        _components: &(), 
+        sender: Sender<ApplicationMessage>
+    ) -> Self {
+        let ui_src = include_str!("../../resources/main.glade");
+        let builder = Builder::from_string(ui_src);
 
-    fn view(relm: &Relm<Self>, model: Self::Model) -> Self {
-        let glade_src = include_str!("../../resources/main.glade");
-        let builder = Builder::from_string(glade_src);
+        let window: gtk::ApplicationWindow = builder.object("window.main").expect("could not get application window");
 
-        let window: Window = builder.object("window.main").unwrap();
-        window.show_all();
-
-        let menu_file_new: gtk::MenuItem = builder.object("window.main.menu.file.new").unwrap();
-        let menu_file_open: gtk::MenuItem = builder.object("window.main.menu.file.open").unwrap();
-        let menu_file_quit: gtk::MenuItem = builder.object("window.main.menu.file.quit").unwrap();
-
-        connect!(relm, window, connect_delete_event(_, _), return (Some(MainWindowMsg::Quit), Inhibit(false)));
-        connect!(menu_file_new, connect_activate(_), relm, MainWindowMsg::Quit);
-        connect!(menu_file_open, connect_activate(_), relm, MainWindowMsg::Quit);
-        connect!(menu_file_quit, connect_activate(_), relm, MainWindowMsg::Quit);
-
-        return MainWindow {
-            application: model,
+        return Self {
             window: window
         };
     }
-}
 
-
-impl Update for MainWindow {
-
-    type Model = Application;
-    type ModelParam = ();
-    type Msg = MainWindowMsg;
-
-    fn model(_: &Relm<Self>, _: ()) -> Self::Model {
-        return Application {};
+    fn root_widget(&self) -> Self::Root {
+        return self.window.clone();
     }
 
-    fn update(&mut self, event: Self::Msg) {
-        match event {
-            MainWindowMsg::Quit => {
-                gtk::main_quit();
-            }
-        }
+    fn view(&mut self, model: &ApplicationModel, _sender: Sender<ApplicationMessage>) {
+        // do something
     }
 }

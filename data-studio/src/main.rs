@@ -1,12 +1,14 @@
+use relm4::{
+    RelmApp
+};
+    
 mod models;
 mod views;
 
-use relm::{ Widget };
-
-
-use crate::views::main_window::MainWindow;
-
+use crate::models::application_model::ApplicationModel;
 
 fn main() {
-    MainWindow::run(()).expect("MainWindow::run() failed");
+    let model = ApplicationModel::new();
+    let app = RelmApp::new(model);
+    app.run();
 }
