@@ -27,13 +27,33 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <child>
-                      <object class="GtkImageMenuItem" id="window.main.menu.file.new">
-                        <property name="label">gtk-new</property>
+                      <object class="GtkMenuItem" id="window.main.menu.file.new">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">New ...</property>
                         <property name="use-underline">True</property>
-                        <property name="use-stock">True</property>
-                        <property name="always-show-image">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkMenuItem" id="window.main.menu.file.new.source">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">New Source</property>
+                                <property name="use-underline">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="window.main.menu.file.new.query">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">New Query</property>
+                                <property name="use-underline">True</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child>
@@ -232,11 +252,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkBox">
+          <object class="GtkPaned">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
+            <property name="can-focus">True</property>
             <child>
               <object class="GtkBox">
+                <property name="width-request">200</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
@@ -245,7 +266,6 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="margin-left">8</property>
                     <property name="margin-top">6</property>
                     <property name="margin-bottom">6</property>
                     <property name="label" translatable="yes">Connections</property>
@@ -323,9 +343,8 @@
                 </child>
               </object>
               <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
+                <property name="resize">False</property>
+                <property name="shrink">True</property>
               </packing>
             </child>
             <child>
@@ -351,17 +370,19 @@
                 </child>
               </object>
               <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">2</property>
+                <property name="resize">True</property>
+                <property name="shrink">True</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="expand">True</property>
             <property name="fill">True</property>
-            <property name="position">10</property>
+            <property name="position">2</property>
           </packing>
+        </child>
+        <child>
+          <placeholder/>
         </child>
       </object>
     </child>
