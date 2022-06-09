@@ -1,6 +1,18 @@
+use log::{
+    info,
+    debug,
+    warn,
+    error
+};
+
 use relm4::{
     gtk,
     gtk::Builder,
+    gtk::prelude::{
+        GtkWindowExt,
+        GtkApplicationExt
+    },
+    gtk::gio::MenuModel,
     Sender, 
     Widgets
 };
@@ -27,10 +39,13 @@ impl Widgets<ApplicationModel, ()> for MainWindow {
         _components: &(), 
         sender: Sender<ApplicationMessage>
     ) -> Self {
-        let ui_src = include_str!("../../resources/main.glade");
+        info!("MainWindow::init_view()");
+
+        let ui_src = include_str!("../../resources/main.ui");
         let builder = Builder::from_string(ui_src);
 
         let window: gtk::ApplicationWindow = builder.object("window.main").expect("could not get application window");
+        // let window_main: gtk::Box = builder.object("window.main.content").expect("could not get application window content");
 
         return Self {
             window: window
