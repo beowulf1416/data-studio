@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<menu id="main.menu">
+<interface>
+  <menu id="window.app.menu">
     <section>
-        <item>
-            <attribute name="label" translatable="yes">_File</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">_Help</attribute>
-        </item>
+      <item>
+        <attribute name="label" translatable="yes">Menu 1</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Menu 2</attribute>
+      </item>
     </section>
-</menu>
+  </menu>
+</interface>
