@@ -1,42 +1,45 @@
 extern crate log;
 
 use log::{
+    info,
     error
 };
 
-use relm4::{
-    RelmApp,
-    gtk::{
-        Builder,
-        builders::ApplicationBuilder
-    },
-    gtk::gio::MenuModel
+use gtk4::prelude::*;
+use gtk4::{
+    Application, 
+    ApplicationWindow,
+    Builder
 };
-    
-mod models;
-mod views;
 
-use crate::models::application_model::ApplicationModel;
 
-static APP_ID: &str = "com.tomale.gds";
+mod ui;
 
+
+use ui::MainWindow;
 
 fn main() {
-    env_logger::init();
+    let app = Application::builder()
+        .application_id("org.tomale.ds")
+        .build();
 
-    if let Err(e) = relm4::gtk::init() {
-        error!("An error occured during gtk init: {}", e);
-    } else {
-        let builder = Builder::from_string(include_str!("../resources/main.menu.ui"));
-        let app_menu: MenuModel = builder.object("window.app.menu").expect("could not get application menu");
+    app.connect_activate(build_ui);
 
-        let gtk_app = ApplicationBuilder::new()
-            .application_id(APP_ID)
-            .menubar(&app_menu)
-            .build();
+    app.run();
+}
 
-        let model = ApplicationModel::new();
-        let app = RelmApp::with_app(model, gtk_app);
-        app.run();
-    }
+fn build_ui(app: &Application) {
+    let window_src = include_str!("../resources/main.ui");
+    let builder = Builder::from_string(window_src);
+
+    // let window = ApplicationWindow::builder()
+    //     .application(app)
+    //     .title("My GTK App")
+    //     .build();
+    let window: ApplicationWindow = builder.object("window.main").unwrap();
+    window.set_application(Some(app));
+
+
+    // Present window
+    window.present();
 }

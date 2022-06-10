@@ -71,7 +71,7 @@
       </item>
     </section>
   </menu>
-  <object class="GtkApplicationWindow" id="window.main">
+  <template class="MainWindow" parent="GtkApplicationWindow">
     <property name="can-focus">False</property>
     <property name="title" translatable="yes">Data Studio</property>
     <property name="default-width">600</property>
