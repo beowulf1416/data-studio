@@ -1,9 +1,10 @@
 mod main_window;
 
-use gtk4::{
+use gtk::{
     prelude::*,
     subclass::prelude::*,
     Accessible,
+    Application,
     ApplicationWindow,
     Buildable,
     ConstraintTarget,
@@ -16,12 +17,15 @@ use gtk4::{
         ActionGroup,
         ActionMap
     },
-    glib
+    glib,
+    glib::{
+        Object
+    }
 };
 
 
 glib::wrapper! {
-    pub struct MainWindow(ObjectSubclass<main_window::Window>)
+    pub struct MainWindow(ObjectSubclass<main_window::MainWindow>)
         @extends 
             ApplicationWindow,
             Window,
@@ -35,4 +39,12 @@ glib::wrapper! {
             Native,
             Root,
             ShortcutManager;
+}
+
+
+impl MainWindow {
+
+    pub fn new(app: &Application) -> Self {
+        return Object::new(&[("application", app)]).expect("Failed to create main window");
+    }
 }

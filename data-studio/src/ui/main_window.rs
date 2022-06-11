@@ -1,28 +1,25 @@
 use std::cell::RefCell;
 
-use gtk4::{
+use gtk::{
     prelude::*,
-    subclass::*,
+    subclass::prelude::*,
     CompositeTemplate,
-    gio,
-    glib::{
-        object_subclass,
-        subclass::InitializingObject
-    }
+    glib,
+    glib::subclass::InitializingObject
 };
 
 
-#[derive(CompositeTemplate)]
-#[template(resource="../../resources/main.ui")]
-pub struct Window {
+#[derive(CompositeTemplate, Default)]
+#[template(resource="/org/tomale/ds/main.ui")]
+pub struct MainWindow {
 
 }
 
-#[object_subclass]
-impl ObjectSubclass for Window {
+#[glib::object_subclass]
+impl ObjectSubclass for MainWindow {
     const NAME: &'static str = "MainWindow";
-    type Type = super::Window;
-    type ParentType = gtk4::ApplicationWindow;
+    type Type = super::MainWindow;
+    type ParentType = gtk::ApplicationWindow;
 
     fn class_init(klass: &mut Self::Class) {
         klass.bind_template();
@@ -33,8 +30,19 @@ impl ObjectSubclass for Window {
     }
 }
 
-impl WidgetImpl for Window {}
+impl WidgetImpl for MainWindow {}
 
-impl WindowImpl for Window {}
+impl WindowImpl for MainWindow {}
 
-impl ApplicationWindowImpl for Window {}
+impl ApplicationWindowImpl for MainWindow {}
+
+
+impl ObjectImpl for MainWindow {
+    fn constructed(&self, obj: &Self::Type) {
+        self.parent_constructed(obj);
+
+        // obj.setup_tasks();
+        // obj.setup_callbacks();
+        // obj.setup_factory();
+    }
+}
