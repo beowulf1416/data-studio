@@ -20,6 +20,7 @@
           <attribute name="label" translatable="yes">E_xit</attribute>
           <attribute name="action">window.close</attribute>
           <attribute name="accel">&lt;Primary&gt;q</attribute>
+          <attribute name="icon-name">application-exit</attribute>
         </item>
       </section>
     </submenu>
@@ -112,15 +113,33 @@
             <property name="can-focus">True</property>
             <property name="resize-end-child">True</property>
             <property name="vexpand">True</property>
+            <!-- data sources pane -->
             <child>
               <object class="GtkBox">
                 <property name="width-request">200</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkButton">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="label" translatable="yes">Button 1</property>
+                  <object class="GtkBox">
+                    <property name="orientation">horizontal</property>
+                    <style>
+                      <class name="toolbar" />
+                    </style>
+                    <!-- new data source button-->
+                    <child>
+                      <object class="GtkButton">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="icon-name">list-add</property>
+                      </object>
+                    </child>
+                    <!-- delete data source button -->
+                    <child>
+                      <object class="GtkButton">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="icon-name">list-remove</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
