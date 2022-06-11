@@ -78,6 +78,21 @@
     <property name="default-width">600</property>
     <property name="default-height">400</property>
     <property name="show-menubar">yes</property>
+    <child type="titlebar">
+      <object class="GtkHeaderBar">
+        <property name="title-widget">
+          <object class="GtkLabel">
+            <property name="label" translatable="yes">Data Studio</property>
+            <property name="single-line-mode">True</property>
+            <property name="ellipsize">end</property>
+            <property name="width-chars">5</property>
+            <style>
+              <class name="title"/>
+            </style>
+          </object>
+        </property>
+      </object>
+    </child>
     <child>
       <object class="GtkBox" id="window.main.content">
         <property name="visible">True</property>
@@ -90,6 +105,9 @@
               <property name="label">Main Menu</property>
             </accessibility>
           </object>
+        </child>
+        <child>
+
         </child>
         <child>
           <object class="GtkStatusbar" id="window.main.status"/>
