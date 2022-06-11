@@ -8,6 +8,7 @@
         <section>
           <item>
             <attribute name="label" translatable="yes">New Data Source</attribute>
+            <attribute name="action">win.new-data-source</attribute>
           </item>
           <item>
             <attribute name="label" translatable="yes">New Query</attribute>
@@ -17,7 +18,7 @@
       <section>
         <item>
           <attribute name="label" translatable="yes">E_xit</attribute>
-          <attribute name="action">app.quit</attribute>
+          <attribute name="action">window.close</attribute>
           <attribute name="accel">&lt;Primary&gt;q</attribute>
         </item>
       </section>

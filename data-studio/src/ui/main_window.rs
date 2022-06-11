@@ -1,4 +1,8 @@
-use std::cell::RefCell;
+use log::{
+    info
+};
+
+// use std::cell::RefCell;
 
 use gtk::{
     prelude::*,
@@ -39,10 +43,13 @@ impl ApplicationWindowImpl for MainWindow {}
 
 impl ObjectImpl for MainWindow {
     fn constructed(&self, obj: &Self::Type) {
+        info!("MainWindow::constructed()");
+        
         self.parent_constructed(obj);
 
         // obj.setup_tasks();
         // obj.setup_callbacks();
         // obj.setup_factory();
+        obj.setup_actions();
     }
 }
