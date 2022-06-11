@@ -113,7 +113,7 @@
         </child>
         <!-- content area -->
         <child>
-          <object class="GtkOverlay" id="window.main.content">
+          <object class="GtkStack" id="window.main.content">
             <!-- left and right pane -->
             <child>
               <object class="GtkPaned" id="window.main.content.sources">
@@ -200,13 +200,15 @@
               </object>
             </child>
             <!-- end: left and right pane -->
+
             <!-- overlay -->
-            <child type="overlay">
+            <!-- <child type="overlay">
               <object class="GtkButton">
                 <property name="label">overlay button</property>
               </object>
-            </child>
+            </child> -->
             <!-- end: ovelay -->
+            
           </object>
         </child>
         <!-- status bar -->
