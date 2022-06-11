@@ -118,6 +118,7 @@
               <object class="GtkBox">
                 <property name="width-request">200</property>
                 <property name="orientation">vertical</property>
+                <!-- toolbar -->
                 <child>
                   <object class="GtkBox">
                     <property name="orientation">horizontal</property>
@@ -143,16 +144,47 @@
                     </child>
                   </object>
                 </child>
+                <!-- tree view -->
+                <child>
+                  <object class="GtkTreeView">
+                    <property name="enable-search">True</property>
+                    <child>
+                      <object class="GtkTreeViewColumn">
+                        <property name="title">Connections</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="test-renderer"/>
+                          <attributes>
+                            <attribute name="text">1</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
               </object>
             </child>
+            <!-- query pane -->
             <child>
               <object class="GtkBox">
+                <!-- notebook -->
                 <child>
-                  <object class="GtkButton">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="label" translatable="yes">Button 2</property>
+                  <object class="GtkNotebook">
                     <property name="hexpand">True</property>
+                    <child>
+                      <object class="GtkLabel" id="notebook-content">
+                        <property name="label">Content</property>
+                      </object>
+                    </child>
+                    <child type="tab">
+                      <object class="GtkLabel" id="notebook-tab-1">
+                        <property name="label">Tab 1</property>
+                      </object>
+                    </child>
+                    <child type="tab">
+                      <object class="GtkLabel" id="notebook-tab-2">
+                        <property name="label">Tab 2</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
