@@ -9,5 +9,9 @@ edition = "2021"
 log = "*"
 env_logger = "*"
 
-gtk4 = "0.4.8"
-#gtk = { version = "0.4.8", package = "gtk4" }
+#gtk4 = "0.4.8"
+gtk = { version = "*", package = "gtk4" }
+
+
+[build-dependencies]
+gtk = { version = "*", package = "gtk4" }
