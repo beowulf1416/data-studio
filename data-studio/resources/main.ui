@@ -79,6 +79,7 @@
     <property name="default-width">600</property>
     <property name="default-height">400</property>
     <property name="show-menubar">yes</property>
+    <!-- title bar -->
     <child type="titlebar">
       <object class="GtkHeaderBar">
         <property name="title-widget">
@@ -94,11 +95,14 @@
         </property>
       </object>
     </child>
+    <!-- end: title bar -->
+    <!-- main content -->
     <child>
       <object class="GtkBox" id="window.main.content">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
+        <!-- main menu -->
         <child>
           <object class="GtkPopoverMenuBar" id="window.main.menubar">
             <property name="menu-model">window.main.menu</property>
@@ -107,55 +111,87 @@
             </accessibility>
           </object>
         </child>
+        <!-- content area -->
         <child>
-          <object class="GtkPaned" id="window.main.content.sources">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="resize-end-child">True</property>
-            <property name="vexpand">True</property>
-            <!-- data sources pane -->
+          <object class="GtkOverlay" id="window.main.content">
+            <!-- left and right pane -->
             <child>
-              <object class="GtkBox">
-                <property name="width-request">200</property>
-                <property name="orientation">vertical</property>
-                <!-- toolbar -->
+              <object class="GtkPaned" id="window.main.content.sources">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="resize-end-child">True</property>
+                <property name="vexpand">True</property>
+                <!-- data sources pane -->
                 <child>
                   <object class="GtkBox">
-                    <property name="orientation">horizontal</property>
-                    <style>
-                      <class name="toolbar" />
-                    </style>
-                    <!-- new data source button-->
+                    <property name="width-request">200</property>
+                    <property name="orientation">vertical</property>
+                    <!-- toolbar -->
                     <child>
-                      <object class="GtkButton">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="icon-name">list-add</property>
-                        <property name="action-name">win.data-source-add</property>
+                      <object class="GtkBox">
+                        <property name="orientation">horizontal</property>
+                        <style>
+                          <class name="toolbar" />
+                        </style>
+                        <!-- new data source button-->
+                        <child>
+                          <object class="GtkButton">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="icon-name">list-add</property>
+                            <property name="action-name">win.data-source-add</property>
+                          </object>
+                        </child>
+                        <!-- delete data source button -->
+                        <child>
+                          <object class="GtkButton">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="icon-name">list-remove</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
-                    <!-- delete data source button -->
+                    <!-- tree view -->
                     <child>
-                      <object class="GtkButton">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="icon-name">list-remove</property>
+                      <object class="GtkTreeView">
+                        <property name="enable-search">True</property>
+                        <child>
+                          <object class="GtkTreeViewColumn">
+                            <property name="title">Connections</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="test-renderer"/>
+                              <attributes>
+                                <attribute name="text">1</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
                 </child>
-                <!-- tree view -->
+                <!-- query pane -->
                 <child>
-                  <object class="GtkTreeView">
-                    <property name="enable-search">True</property>
+                  <object class="GtkBox">
+                    <!-- notebook -->
                     <child>
-                      <object class="GtkTreeViewColumn">
-                        <property name="title">Connections</property>
+                      <object class="GtkNotebook">
+                        <property name="hexpand">True</property>
                         <child>
-                          <object class="GtkCellRendererText" id="test-renderer"/>
-                          <attributes>
-                            <attribute name="text">1</attribute>
-                          </attributes>
+                          <object class="GtkLabel" id="notebook-content">
+                            <property name="label">Content</property>
+                          </object>
+                        </child>
+                        <child type="tab">
+                          <object class="GtkLabel" id="notebook-tab-1">
+                            <property name="label">Tab 1</property>
+                          </object>
+                        </child>
+                        <child type="tab">
+                          <object class="GtkLabel" id="notebook-tab-2">
+                            <property name="label">Tab 2</property>
+                          </object>
                         </child>
                       </object>
                     </child>
@@ -163,34 +199,17 @@
                 </child>
               </object>
             </child>
-            <!-- query pane -->
-            <child>
-              <object class="GtkBox">
-                <!-- notebook -->
-                <child>
-                  <object class="GtkNotebook">
-                    <property name="hexpand">True</property>
-                    <child>
-                      <object class="GtkLabel" id="notebook-content">
-                        <property name="label">Content</property>
-                      </object>
-                    </child>
-                    <child type="tab">
-                      <object class="GtkLabel" id="notebook-tab-1">
-                        <property name="label">Tab 1</property>
-                      </object>
-                    </child>
-                    <child type="tab">
-                      <object class="GtkLabel" id="notebook-tab-2">
-                        <property name="label">Tab 2</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
+            <!-- end: left and right pane -->
+            <!-- overlay -->
+            <child type="overlay">
+              <object class="GtkButton">
+                <property name="label">overlay button</property>
               </object>
             </child>
+            <!-- end: ovelay -->
           </object>
         </child>
+        <!-- status bar -->
         <child>
           <object class="GtkStatusbar" id="window.main.status">
             <property name="valign">end</property>
@@ -202,7 +221,9 @@
             </child>
           </object>
         </child>
+        <!-- end: status bar -->
       </object>
     </child>
+    <!-- end: main content -->
   </template>
 </interface>
