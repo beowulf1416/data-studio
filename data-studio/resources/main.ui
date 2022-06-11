@@ -8,7 +8,7 @@
         <section>
           <item>
             <attribute name="label" translatable="yes">New Data Source</attribute>
-            <attribute name="action">win.new-data-source</attribute>
+            <attribute name="action">win.data-source-add</attribute>
           </item>
           <item>
             <attribute name="label" translatable="yes">New Query</attribute>
@@ -130,6 +130,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="icon-name">list-add</property>
+                        <property name="action-name">win.data-source-add</property>
                       </object>
                     </child>
                     <!-- delete data source button -->

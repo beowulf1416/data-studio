@@ -60,7 +60,7 @@ impl MainWindow {
 
         let window = self;
 
-        let action_new_data_source = SimpleAction::new("new-data-source", None);
+        let action_new_data_source = SimpleAction::new("data-source-add", None);
         action_new_data_source.connect_activate(clone!(@weak window => move |_, _| {
             debug!("win.new.data-source clicked: {:?}", window);
         }));
