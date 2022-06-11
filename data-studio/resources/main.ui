@@ -95,5 +95,5 @@
         </child>
       </object>
     </child>
-  </object>
+  </template>
 </interface>
