@@ -73,6 +73,7 @@
       </item>
     </section>
   </menu>
+  <!-- main window template -->
   <template class="MainWindow" parent="GtkApplicationWindow">
     <property name="can-focus">False</property>
     <property name="title" translatable="yes">Data Studio</property>
@@ -178,19 +179,69 @@
                     <child>
                       <object class="GtkNotebook">
                         <property name="hexpand">True</property>
-                        <child>
-                          <object class="GtkLabel" id="notebook-content">
-                            <property name="label">Content</property>
+                        <property name="enable-popup">True</property>
+                        <child type="action-end">
+                          <object class="GtkButton">
+                            <property name="icon-name">list-remove</property>
                           </object>
+                        </child>
+
+                        <child>
+                          <object class="GtkBox" id="notebook-content-1">
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="orientation">horizontal</property>
+                                <style>
+                                  <class name="toolbar" />
+                                </style>
+                                <child>
+                                  <object class="GtkButton">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="icon-name">list-remove</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkButton">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="icon-name">list-remove</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTextView">
+                                <property name="vexpand">True</property>
+                              </object>
+                            </child>
+                          </object>
+
+                          <!-- <object class="GtkLabel" id="notebook-content-1">
+                            <property name="label">Content 1</property>
+                          </object> -->
                         </child>
                         <child type="tab">
                           <object class="GtkLabel" id="notebook-tab-1">
                             <property name="label">Tab 1</property>
                           </object>
                         </child>
+                        
+                        <child>
+                          <object class="GtkLabel" id="notebook-content-2">
+                            <property name="label">Content 2</property>
+                          </object>
+                        </child>
                         <child type="tab">
                           <object class="GtkLabel" id="notebook-tab-2">
                             <property name="label">Tab 2</property>
+                          </object>
+                        </child>
+                        
+                        <child>
+                          <object class="GtkLabel" id="notebook-content-3">
+                            <property name="label">Content 3</property>
                           </object>
                         </child>
                       </object>
@@ -228,4 +279,5 @@
     </child>
     <!-- end: main content -->
   </template>
+  <!-- main window template -->
 </interface>
