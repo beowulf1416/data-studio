@@ -113,7 +113,7 @@
         </child>
         <!-- content area -->
         <child>
-          <object class="GtkStack" id="window.main.content">
+          <object class="GtkStack" id="window.main.content.stack">
             <!-- left and right pane -->
             <child>
               <object class="GtkPaned" id="window.main.content.sources">
@@ -208,7 +208,7 @@
               </object>
             </child> -->
             <!-- end: ovelay -->
-            
+
           </object>
         </child>
         <!-- status bar -->
