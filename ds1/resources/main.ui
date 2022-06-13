@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <menu id="window.main.menu">
+    <submenu>
+      <attribute name="label" translatable="yes">_File</attribute>
+      <submenu>
+        <attribute name="label" translatable="yes">_New</attribute>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">New Data Source</attribute>
+            <attribute name="action">win.data-source-add</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">New Query</attribute>
+          </item>
+        </section>
+      </submenu>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">E_xit</attribute>
+          <attribute name="action">window.close</attribute>
+          <attribute name="accel">&lt;Primary&gt;q</attribute>
+          <attribute name="icon-name">application-exit</attribute>
+        </item>
+      </section>
+    </submenu>
+    <submenu>
+      <attribute name="label" translatable="yes">Edit</attribute>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Undo</attribute>
+          <attribute name="accel">&lt;Primary&gt;z</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Redo</attribute>
+          <attribute name="accel">&lt;Primary&gt;y</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Copy</attribute>
+          <attribute name="action">win.copy</attribute>
+          <attribute name="accel">&lt;Primary&gt;c</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Cut</attribute>
+          <attribute name="action">win.cut</attribute>
+          <attribute name="accel">&lt;Primary&gt;x</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Paste</attribute>
+          <attribute name="action">win.paste</attribute>
+          <attribute name="accel">&lt;Primary&gt;v</attribute>
+        </item>
+      </section>
+    </submenu>
+    <submenu>
+      <attribute name="label" translatable="yes">_Help</attribute>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">_About</attribute>
+        </item>
+      </section>
+    </submenu>
+  </menu>
+  <menu id="window.app.menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Menu 1</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Menu 2</attribute>
+      </item>
+    </section>
+  </menu>
+  <!-- main window template -->
+  <template class="MainWindow" parent="GtkApplicationWindow">
+    <property name="can-focus">False</property>
+    <property name="title" translatable="yes">Data Studio</property>
+    <property name="default-width">600</property>
+    <property name="default-height">400</property>
+    <property name="show-menubar">yes</property>
+    <!-- title bar -->
+    <child type="titlebar">
+      <object class="GtkHeaderBar">
+        <property name="title-widget">
+          <object class="GtkLabel">
+            <property name="label" translatable="yes">Data Studio</property>
+            <property name="single-line-mode">True</property>
+            <property name="ellipsize">end</property>
+            <property name="width-chars">5</property>
+            <style>
+              <class name="title"/>
+            </style>
+          </object>
+        </property>
+      </object>
+    </child>
+    <!-- end: title bar -->
+    <!-- main content -->
+    <child>
+      <object class="GtkBox" id="window.main.content">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <!-- main menu -->
+        <child>
+          <object class="GtkPopoverMenuBar" id="window.main.menubar">
+            <property name="menu-model">window.main.menu</property>
+            <accessibility>
+              <property name="label">Main Menu</property>
+            </accessibility>
+          </object>
+        </child>
+        <!-- content area -->
+        <child>
+          <object class="GtkStack" id="window.main.content.stack">
+            <!-- left and right pane -->
+            <child>
+              <object class="GtkPaned" id="window.main.content.sources">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="resize-end-child">True</property>
+                <property name="vexpand">True</property>
+                <!-- data sources pane -->
+                <child>
+                  <object class="GtkBox">
+                    <property name="width-request">200</property>
+                    <property name="orientation">vertical</property>
+                    <!-- toolbar -->
+                    <child>
+                      <object class="GtkBox">
+                        <property name="orientation">horizontal</property>
+                        <style>
+                          <class name="toolbar" />
+                        </style>
+                        <!-- new data source button-->
+                        <child>
+                          <object class="GtkButton">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="icon-name">list-add</property>
+                            <property name="action-name">win.data-source-add</property>
+                          </object>
+                        </child>
+                        <!-- delete data source button -->
+                        <child>
+                          <object class="GtkButton">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="icon-name">list-remove</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <!-- tree view -->
+                    <child>
+                      <object class="GtkTreeView">
+                        <property name="enable-search">True</property>
+                        <child>
+                          <object class="GtkTreeViewColumn">
+                            <property name="title">Connections</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="test-renderer"/>
+                              <attributes>
+                                <attribute name="text">1</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <!-- query pane -->
+                <child>
+                  <object class="GtkBox">
+                    <!-- notebook -->
+                    <child>
+                      <object class="GtkNotebook">
+                        <property name="hexpand">True</property>
+                        <property name="enable-popup">True</property>
+                        <child type="action-end">
+                          <object class="GtkButton">
+                            <property name="icon-name">list-remove</property>
+                          </object>
+                        </child>
+
+                        <child>
+                          <object class="GtkBox" id="notebook-content-1">
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="orientation">horizontal</property>
+                                <style>
+                                  <class name="toolbar" />
+                                </style>
+                                <child>
+                                  <object class="GtkButton">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="icon-name">list-remove</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkButton">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="icon-name">list-remove</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTextView">
+                                <property name="vexpand">True</property>
+                                <property name="hexpand">True</property>
+                                <property name="editable">True</property>
+                                <property name="monospace">True</property>
+                                <property name="accepts-tab">True</property>
+                                <property name="cursor-visible">True</property>
+                                <property name="buffer">buffer</property>
+                              </object>
+                            </child>
+                          </object>
+
+                          <!-- <object class="GtkLabel" id="notebook-content-1">
+                            <property name="label">Content 1</property>
+                          </object> -->
+                        </child>
+                        <child type="tab">
+                          <object class="GtkLabel" id="notebook-tab-1">
+                            <property name="label">Tab 1</property>
+                          </object>
+                        </child>
+                        
+                        <child>
+                          <object class="GtkLabel" id="notebook-content-2">
+                            <property name="label">Content 2</property>
+                          </object>
+                        </child>
+                        <child type="tab">
+                          <object class="GtkLabel" id="notebook-tab-2">
+                            <property name="label">Tab 2</property>
+                          </object>
+                        </child>
+                        
+                        <child>
+                          <object class="GtkLabel" id="notebook-content-3">
+                            <property name="label">Content 3</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <!-- end: left and right pane -->
+
+            <!-- overlay -->
+            <!-- <child type="overlay">
+              <object class="GtkButton">
+                <property name="label">overlay button</property>
+              </object>
+            </child> -->
+            <!-- end: ovelay -->
+
+          </object>
+        </child>
+        <!-- status bar -->
+        <child>
+          <object class="GtkStatusbar" id="window.main.status">
+            <property name="valign">end</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">Status</property>
+                <property name="valign">start</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <!-- end: status bar -->
+      </object>
+    </child>
+    <!-- end: main content -->
+  </template>
+  <!-- main window template -->
+</interface>
