@@ -2,5 +2,6 @@
 <gresources>
   <gresource prefix="/org/tomale/ds/">
     <file compressed="true" preprocess="xml-stripblanks">main.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">data-sources.ui</file>
   </gresource>
 </gresources>

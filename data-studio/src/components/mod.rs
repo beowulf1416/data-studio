@@ -1,4 +1,5 @@
 mod main_window;
+mod data_sources;
 
 use log::{
     info,

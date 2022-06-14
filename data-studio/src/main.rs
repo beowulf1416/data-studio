@@ -1,4 +1,4 @@
-mod ui;
+mod components;
 
 extern crate log;
 

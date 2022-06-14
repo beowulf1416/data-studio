@@ -12,11 +12,15 @@ use gtk::{
     glib::subclass::InitializingObject
 };
 
+use crate::components::data_sources::DataSources;
+
 
 #[derive(CompositeTemplate, Default)]
 #[template(resource="/org/tomale/ds/main.ui")]
 pub struct MainWindow {
 
+        #[template_child]
+        pub data_sources: TemplateChild<DataSources>
 }
 
 #[glib::object_subclass]
