@@ -21,7 +21,7 @@ pub struct ApplicationWidgets {
 
 
 pub struct Application {
-    app: gtk::Application
+    // app: &gtk::Application
 }
 
 
@@ -32,9 +32,9 @@ pub struct ApplicationComponents {
 
 impl Application {
 
-    pub fn new(app: gtk::Application) -> Self {
+    pub fn new(app: &gtk::Application) -> Self {
         return Self {
-            app: app
+            // app: app
         };
     }
 }
@@ -75,8 +75,9 @@ impl Widgets<Application, ()> for ApplicationWidgets {
         components: &ApplicationComponents,
         sender: Sender<ApplicationMessages>
     ) -> Self {
-        let window = MainWindow::new(&model.app);
-        
+        info!("ApplicationWidgets::init_view()");
+        // let window = MainWindow::new(&model.app);
+        let window = MainWindow::new();
 
         return ApplicationWidgets {
             window: window

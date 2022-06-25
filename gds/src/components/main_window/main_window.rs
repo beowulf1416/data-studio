@@ -7,17 +7,9 @@ use gtk::{
     prelude::*,
     subclass::prelude::*,
     CompositeTemplate,
-    // subclass::widget::CompositeTemplate,
     glib,
     glib::subclass::InitializingObject
 };
-// use gtk::CompositeTemplate;
-// use relm4::gtk::gtk4_macros::CompositeTemplate;
-
-// use glib;
-// use glib::subclass::InitializingObject;
-
-// use crate::components::data_sources::DataSources;
 
 
 #[derive(CompositeTemplate, Default)]
@@ -35,10 +27,12 @@ impl ObjectSubclass for MainWindow {
     type ParentType = gtk::ApplicationWindow;
 
     fn class_init(klass: &mut Self::Class) {
+        info!("MainWindow::class_init()");
         klass.bind_template();
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {
+        info!("MainWindow::instance_init()");
         obj.init_template();
     }
 }

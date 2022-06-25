@@ -94,7 +94,7 @@
                     <property name="ellipsize">end</property>
                     <property name="width-chars">5</property>
                     <style>
-                    <class name="title"/>
+                        <class name="title"/>
                     </style>
                 </object>
                 </property>
@@ -114,11 +114,71 @@
                     <object class="GtkPopoverMenuBar" id="window.main.menubar">
                         <property name="menu-model">window.main.menu</property>
                         <accessibility>
-                        <property name="label">Main Menu</property>
+                            <property name="label">Main Menu</property>
                         </accessibility>
                     </object>
                 </child>
                 <!-- end region: main menu bar -->
+
+                <!-- region: main toolbar -->
+                <child>
+                    <object class="GtkBox" id="window.main.toolbar">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="orientation">horizontal</property>
+                        <style>
+                            <class name="toolbar" />
+                        </style>
+
+                        <!-- region: toolbar items -->
+                        <child>
+                            <object class="GtkButton">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="icon-name">list-add</property>
+                                <property name="action-name">win.data-source-add</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkButton">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="icon-name">list-add</property>
+                                <property name="action-name">win.data-source-add</property>
+                            </object>
+                        </child>
+                        <!-- end region: toolbar items -->
+                    </object>
+                </child>
+                <!-- end region: main toolbar -->
+
+                <!-- region: left and right pane -->
+                <child>
+                    <object class="GtkPaned" id="window.main.content.pane">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="resize-end-child">True</property>
+                        <property name="vexpand">True</property>
+
+                        <!-- region: left pane -->
+                        <child>
+                            <object class="GtkBox">
+                                <property name="width-request">200</property>
+                                <property name="orientation">vertical</property>
+                            </object>
+                        </child>
+                        <!-- end region: left pane -->
+
+                        <!-- region: right pane-->
+                        <child>
+                            <object class="GtkBox">
+                                <property name="orientation">vertical</property>
+                            </object>
+                        </child>
+                        <!-- end region: right pane -->
+                    </object>
+                </child>
+                <!-- end region: left and right pane -->
                 
             </object><!-- #window.main.content -->
         </child>
