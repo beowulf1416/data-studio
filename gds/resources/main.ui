@@ -1,5 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
+    <!-- region: main menu -->
+    <menu id="window.main.menu">
+        <submenu>
+        <attribute name="label" translatable="yes">_File</attribute>
+        <submenu>
+            <attribute name="label" translatable="yes">_New</attribute>
+            <section>
+            <item>
+                <attribute name="label" translatable="yes">New Data Source</attribute>
+                <attribute name="action">win.data-source-add</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">New Query</attribute>
+            </item>
+            </section>
+        </submenu>
+        <section>
+            <item>
+            <attribute name="label" translatable="yes">E_xit</attribute>
+            <attribute name="action">window.close</attribute>
+            <attribute name="accel">&lt;Primary&gt;q</attribute>
+            <attribute name="icon-name">application-exit</attribute>
+            </item>
+        </section>
+        </submenu>
+        <submenu>
+        <attribute name="label" translatable="yes">Edit</attribute>
+        <section>
+            <item>
+            <attribute name="label" translatable="yes">Undo</attribute>
+            <attribute name="accel">&lt;Primary&gt;z</attribute>
+            </item>
+            <item>
+            <attribute name="label" translatable="yes">Redo</attribute>
+            <attribute name="accel">&lt;Primary&gt;y</attribute>
+            </item>
+        </section>
+        <section>
+            <item>
+            <attribute name="label" translatable="yes">Copy</attribute>
+            <attribute name="action">win.copy</attribute>
+            <attribute name="accel">&lt;Primary&gt;c</attribute>
+            </item>
+            <item>
+            <attribute name="label" translatable="yes">Cut</attribute>
+            <attribute name="action">win.cut</attribute>
+            <attribute name="accel">&lt;Primary&gt;x</attribute>
+            </item>
+            <item>
+            <attribute name="label" translatable="yes">Paste</attribute>
+            <attribute name="action">win.paste</attribute>
+            <attribute name="accel">&lt;Primary&gt;v</attribute>
+            </item>
+        </section>
+        </submenu>
+        <submenu>
+        <attribute name="label" translatable="yes">_Help</attribute>
+        <section>
+            <item>
+            <attribute name="label" translatable="yes">_About</attribute>
+            </item>
+        </section>
+        </submenu>
+    </menu>
+    <menu id="window.app.menu">
+        <section>
+        <item>
+            <attribute name="label" translatable="yes">Menu 1</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">Menu 2</attribute>
+        </item>
+        </section>
+    </menu>
+    <!-- end region: main menu -->
+
     <!-- region: MainWindow -->
     <template class="MainWindow" parent="GtkApplicationWindow">
         <property name="can-focus">False</property>
@@ -32,7 +108,19 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
-            </object>
+
+                <!-- region: main menu bar -->
+                <child>
+                    <object class="GtkPopoverMenuBar" id="window.main.menubar">
+                        <property name="menu-model">window.main.menu</property>
+                        <accessibility>
+                        <property name="label">Main Menu</property>
+                        </accessibility>
+                    </object>
+                </child>
+                <!-- end region: main menu bar -->
+                
+            </object><!-- #window.main.content -->
         </child>
         <!-- end region: window.main.content -->
 
