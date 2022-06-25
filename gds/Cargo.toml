@@ -12,9 +12,10 @@ env_logger = "*"
 #gio = "*"
 #glib = "*"
 #gtk4-macros = "*"
+gtk = { version = "*", package = "gtk4" }
 
 
-relm4 = "*"
+relm4 = { version = "*", features = ["macros"]}
 relm4-components = "*"
 
 [build-dependencies]

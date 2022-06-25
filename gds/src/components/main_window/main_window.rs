@@ -2,11 +2,9 @@ use log::{
     info
 };
 
-// use std::cell::RefCell;
-
 use relm4::*;
 use gtk::{
-    // prelude::*,
+    prelude::*,
     subclass::prelude::*,
     CompositeTemplate,
     // subclass::widget::CompositeTemplate,

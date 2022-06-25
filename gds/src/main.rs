@@ -22,7 +22,7 @@ fn main() {
 
     info!("Starting up");
 
-    gio::resources_register_include!("ds.gresource")
+    gio::resources_register_include!("gds.gresource")
         .expect("Failed to register resources.");
 
     let app = Application::builder()

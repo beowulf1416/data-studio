@@ -10,13 +10,13 @@ use relm4::*;
 use crate::components::main_window::MainWindow;
 
 
-enum ApplicationMessages {
+pub enum ApplicationMessages {
     Exit
 }
 
 
-struct ApplicationWidgets {
-    window: gtk::ApplicationWindow
+pub struct ApplicationWidgets {
+    window: MainWindow
 }
 
 
@@ -25,7 +25,7 @@ pub struct Application {
 }
 
 
-struct ApplicationComponents {
+pub struct ApplicationComponents {
 
 }
 
@@ -67,14 +67,15 @@ impl AppUpdate for Application {
 
 
 impl Widgets<Application, ()> for ApplicationWidgets {
-    type Root = gtk::ApplicationWindow;
+    // type Root = gtk::ApplicationWindow;
+    type Root = MainWindow;
 
     fn init_view(
         model: &Application,
         components: &ApplicationComponents,
         sender: Sender<ApplicationMessages>
     ) -> Self {
-        let window: gtk::ApplicationWindow = MainWindow::new(&model.app);
+        let window = MainWindow::new(&model.app);
         
 
         return ApplicationWidgets {
