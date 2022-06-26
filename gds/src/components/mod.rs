@@ -17,6 +17,7 @@ pub enum ApplicationMessages {
 
 pub struct ApplicationWidgets {
     window: MainWindow
+    // window: gtk::ApplicationWindow
 }
 
 
@@ -76,8 +77,34 @@ impl Widgets<Application, ()> for ApplicationWidgets {
         sender: Sender<ApplicationMessages>
     ) -> Self {
         info!("ApplicationWidgets::init_view()");
-        // let window = MainWindow::new(&model.app);
         let window = MainWindow::new();
+
+        // let main_content = gtk::Box::builder()
+        //     .orientation(gtk::Orientation::Vertical)
+        //     .build();
+
+        // let menu_header = gtk::MenuButton::builder()
+        //     .icon_name("open-menu-symbolic")
+        //     .menu_model(menu_model)
+        //     // .primary(true)
+        //     .build();
+
+
+        // let title = gtk::HeaderBar::builder()
+        //     .show_title_buttons(true)
+        //     .pack_end()
+        //     .build();
+            
+
+        // let window = gtk::ApplicationWindow::builder()
+        //     .title("Data Studio")
+        //     .default_width(600)
+        //     .default_height(400)
+        //     .show_menubar(true)
+        //     .child(&main_content)
+        //     .build();
+
+        
 
         return ApplicationWidgets {
             window: window

@@ -87,17 +87,23 @@
         <!-- region: titlebar -->
         <child type="titlebar">
             <object class="GtkHeaderBar">
-                <property name="title-widget">
-                <object class="GtkLabel">
-                    <property name="label" translatable="yes">Data Studio</property>
-                    <property name="single-line-mode">True</property>
-                    <property name="ellipsize">end</property>
-                    <property name="width-chars">5</property>
-                    <style>
-                        <class name="title"/>
-                    </style>
-                </object>
-                </property>
+                <child type="title">
+                    <object class="GtkLabel">
+                        <property name="label" translatable="yes">Data Studio</property>
+                        <property name="single-line-mode">True</property>
+                        <property name="ellipsize">end</property>
+                        <property name="width-chars">5</property>
+                        <style>
+                            <class name="title"/>
+                        </style>
+                    </object>
+                </child>
+                <child type="end">
+                    <object class="GtkMenuButton">
+                        <property name="icon-name">open-menu-symbolic</property>
+                        <property name="menu-model">window.app.menu</property>
+                    </object>
+                </child>
             </object>
         </child>
         <!-- end region: titlebar -->
