@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <template class="DataSourcesView" parent="GtkBox">
+        <property name="orientation">vertical</property>
+
+        <!-- region: toolbar -->
+        <child>
+            <object class="GtkBox">
+                <property name="orientation">horizontal</property>
+                <style>
+                  <class name="toolbar" />
+                </style>
+
+                <!-- new data source button-->
+                <child>
+                    <object class="GtkButton">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="icon-name">list-add</property>
+                        <property name="action-name">win.data-source-add</property>
+                    </object>
+                </child>
+                
+                <!-- delete data source button -->
+                <child>
+                    <object class="GtkButton">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="icon-name">list-remove</property>
+                    </object>
+                </child>
+            </object>
+        </child>
+        <!-- end region: toolbar -->
+
+        <!-- region: tree view -->
+        <child>
+            <object class="GtkTreeView">
+              <property name="enable-search">True</property>
+              <child>
+                <object class="GtkTreeViewColumn">
+                  <property name="title">Connections</property>
+                  <child>
+                    <object class="GtkCellRendererText" id="test-renderer"/>
+                    <attributes>
+                      <attribute name="text">1</attribute>
+                    </attributes>
+                  </child>
+                </object>
+              </child>
+            </object>
+        </child>
+        <!-- end region: tree view -->
+    </template>
+</interface>

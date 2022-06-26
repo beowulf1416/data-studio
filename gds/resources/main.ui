@@ -171,6 +171,12 @@
                             <object class="GtkBox">
                                 <property name="width-request">200</property>
                                 <property name="orientation">vertical</property>
+
+                                <child>
+                                    <object class="DataSourcesView" id="dsv">
+
+                                    </object>
+                                </child>
                             </object>
                         </child>
                         <!-- end region: left pane -->

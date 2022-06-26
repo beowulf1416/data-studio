@@ -12,7 +12,7 @@ env_logger = "*"
 #gio = "*"
 #glib = "*"
 #gtk4-macros = "*"
-gtk = { version = "*", package = "gtk4" }
+gtk = { version = "*", package = "gtk4", features = ["v4_6"] }
 
 
 relm4 = { version = "*", features = ["macros"]}

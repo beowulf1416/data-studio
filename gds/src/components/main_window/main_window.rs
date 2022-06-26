@@ -2,7 +2,7 @@ use log::{
     info
 };
 
-use relm4::*;
+// use relm4::*;
 use gtk::{
     prelude::*,
     subclass::prelude::*,
@@ -11,6 +11,9 @@ use gtk::{
     glib::subclass::InitializingObject
 };
 
+use crate::components::sources::DataSourcesView;
+
+
 
 #[derive(CompositeTemplate, Default)]
 #[template(resource="/org/tomale/ds/main.ui")]
@@ -18,6 +21,9 @@ pub struct MainWindow {
 
         // #[template_child]
         // pub data_sources: TemplateChild<DataSources>
+
+        #[template_child]
+        pub dsv: TemplateChild<DataSourcesView>,
 }
 
 #[glib::object_subclass]
@@ -28,6 +34,9 @@ impl ObjectSubclass for MainWindow {
 
     fn class_init(klass: &mut Self::Class) {
         info!("MainWindow::class_init()");
+
+        DataSourcesView::ensure_type();
+
         klass.bind_template();
     }
 
