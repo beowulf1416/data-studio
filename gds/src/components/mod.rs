@@ -1,4 +1,4 @@
-mod main_window;
+pub mod main_window;
 mod sources;
 
 use log::{
@@ -6,7 +6,7 @@ use log::{
 };
 
 use gtk::prelude::{ WidgetExt };
-use relm4::*;
+// use relm4::*;
 
 use crate::components::main_window::MainWindow;
 
@@ -42,6 +42,7 @@ impl Application {
 }
 
 
+/*
 impl Model for Application {
     type Msg = ApplicationMessages;
     type Widgets = ApplicationWidgets;
@@ -157,3 +158,4 @@ impl Components<Application> for ApplicationComponents {
         info!("ApplicationComponents::connect_parent()");
     }
 }
+*/

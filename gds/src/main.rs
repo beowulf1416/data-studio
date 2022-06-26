@@ -8,13 +8,20 @@ use log::{
     error
 };
 
-use relm4::{
-    RelmApp,
-    gtk::{
-        gio,
-        Application
-    }
+// use relm4::{
+//     RelmApp,
+//     gtk::{
+//         gio,
+//         Application
+//     }
+// };
+use gtk::{
+    prelude::*,
+    gio,
+    Application
 };
+
+use crate::components::main_window::MainWindow;
 
 
 const APP_ID: &str = "org.tomale.ds";
@@ -35,10 +42,18 @@ fn main() {
         .application_id(APP_ID)
         .build();
 
-    let model = components::Application::new(&app);
-    // let relm = RelmApp::new(model);
-    let relm = RelmApp::with_app(model, app);
-    relm.run();
+    // let model = components::Application::new(&app);
+    // // let relm = RelmApp::new(model);
+    // let relm = RelmApp::with_app(model, app);
+    // relm.run();
+
+    app.connect_activate(build_ui);
+    app.run();
 
     info!("Shutting down");
+}
+
+fn build_ui(app: &gtk::Application) {
+    let window = MainWindow::new(app);
+    window.show();
 }

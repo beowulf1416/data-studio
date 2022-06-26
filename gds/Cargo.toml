@@ -15,8 +15,8 @@ env_logger = "*"
 gtk = { version = "*", package = "gtk4", features = ["v4_6"] }
 
 
-relm4 = { version = "*", features = ["macros"]}
-relm4-components = "*"
+#relm4 = { version = "*", features = ["macros"]}
+#relm4-components = "*"
 
 [build-dependencies]
 gio = "*"

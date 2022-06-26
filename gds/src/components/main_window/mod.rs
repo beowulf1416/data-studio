@@ -1,11 +1,11 @@
-mod main_window;
+pub mod main_window;
 
 use log::{
     info,
     debug
 };
 
-use relm4::*;
+// use relm4::*;
 use gtk::{
     prelude::*,
     // subclass::prelude::*,
@@ -52,10 +52,13 @@ glib::wrapper! {
 
 impl MainWindow {
 
-    // pub fn new(app: &Application) -> Self {
-    pub fn new() -> Self {
-        // return Object::new(&[("application", app)]).expect("Failed to create main window");
-        return Object::new(&[]).expect("Failed to create main window");
+    // pub fn new() -> Self {
+    //     // return Object::new(&[("application", app)]).expect("Failed to create main window");
+    //     return Object::new(&[]).expect("Failed to create main window");
+    // }
+
+    pub fn new(app: &Application) -> Self {
+        return Object::new(&[("application", app)]).expect("Failed to create window");
     }
 
     fn setup_actions(&self) {
