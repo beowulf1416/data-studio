@@ -14,7 +14,8 @@ use gtk::{
 #[derive(CompositeTemplate, Default)]
 #[template(resource="/org/tomale/ds/view.data_sources.ui")]
 pub struct DataSourcesView {
-
+    #[template_child]
+    pub tv: TemplateChild<gtk::TreeView>
 }
 
 
@@ -46,6 +47,8 @@ impl ObjectImpl for DataSourcesView {
         info!("DataSourcesView::constructed()");
         
         self.parent_constructed(obj);
+
+        // let tm = gtk::TreeModel();
 
         // obj.setup_tasks();
         // obj.setup_callbacks();

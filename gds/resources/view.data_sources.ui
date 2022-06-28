@@ -35,16 +35,21 @@
 
         <!-- region: tree view -->
         <child>
-            <object class="GtkTreeView">
-              <property name="enable-search">True</property>
+            <object class="GtkScrolledWindow">
               <child>
-                <object class="GtkTreeViewColumn">
-                  <property name="title">Connections</property>
+                <object class="GtkTreeView" id="tv">
+                  <property name="enable-search">True</property>
+                  <property name="hexpand">True</property>
                   <child>
-                    <object class="GtkCellRendererText" id="test-renderer"/>
-                    <attributes>
-                      <attribute name="text">1</attribute>
-                    </attributes>
+                    <object class="GtkTreeViewColumn">
+                      <property name="title">Connections</property>
+                      <child>
+                        <object class="GtkCellRendererText" id="test-renderer"/>
+                        <attributes>
+                          <attribute name="text">1</attribute>
+                        </attributes>
+                      </child>
+                    </object>
                   </child>
                 </object>
               </child>
