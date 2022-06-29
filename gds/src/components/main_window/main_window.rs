@@ -24,6 +24,9 @@ pub struct MainWindow {
 
         #[template_child]
         pub dsv: TemplateChild<DataSourcesView>,
+
+        #[template_child]
+        pub qp: TemplateChild<gtk::Notebook>,
 }
 
 #[glib::object_subclass]
