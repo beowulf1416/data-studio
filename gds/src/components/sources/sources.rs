@@ -49,6 +49,20 @@ impl ObjectImpl for DataSourcesView {
         self.parent_constructed(obj);
 
         // let tm = gtk::TreeModel();
+        let ts = gtk::TreeStore::new(&[
+            String::static_type()
+        ]);
+
+        for i in 0..10 {
+            ts.insert_with_values(
+                None, 
+                None,
+                &[
+                    (0, &i.to_string())
+                ]
+            );
+        }
+        self.tv.set_model(Some(&ts));
 
         // obj.setup_tasks();
         // obj.setup_callbacks();
