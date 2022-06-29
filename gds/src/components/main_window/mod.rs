@@ -71,5 +71,12 @@ impl MainWindow {
             debug!("win.new.data-source clicked: {:?}", window);
         }));
         self.add_action(&action_new_data_source);
+
+        let action_new_query = SimpleAction::new("query-new", None);
+        action_new_query.connect_activate(clone!(@weak window => move |_, _| {
+            debug!("win.query-new clicked: {:?}", window);
+            // debug!("inner: {:?}", window.template_child(gtk::Notebook::static_type(), "qp"));
+        }));
+        self.add_action(&action_new_query);
     }
 }

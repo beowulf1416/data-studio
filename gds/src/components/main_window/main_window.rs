@@ -29,6 +29,7 @@ pub struct MainWindow {
         pub qp: TemplateChild<gtk::Notebook>,
 }
 
+
 #[glib::object_subclass]
 impl ObjectSubclass for MainWindow {
     const NAME: &'static str = "MainWindow";
@@ -65,6 +66,6 @@ impl ObjectImpl for MainWindow {
         // obj.setup_tasks();
         // obj.setup_callbacks();
         // obj.setup_factory();
-        // obj.setup_actions();
+        obj.setup_actions();
     }
 }

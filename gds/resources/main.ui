@@ -13,6 +13,7 @@
             </item>
             <item>
                 <attribute name="label" translatable="yes">New Query</attribute>
+                <attribute name="action">win.query-new</attribute>
             </item>
             </section>
         </submenu>
