@@ -11,6 +11,16 @@
                 <class name="toolbar" />
               </style>
 
+              <!-- new group button-->
+              <child>
+                <object class="GtkButton">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="icon-name">folder-new</property>
+                    <property name="action-name">win.group-add</property>
+                </object>
+            </child>
+
               <!-- new data source button-->
               <child>
                   <object class="GtkButton">

@@ -3,72 +3,80 @@
     <!-- region: main menu -->
     <menu id="window.main.menu">
         <submenu>
-        <attribute name="label" translatable="yes">_File</attribute>
-        <submenu>
-            <attribute name="label" translatable="yes">_New</attribute>
+            <attribute name="label" translatable="yes">_File</attribute>
+            <submenu>
+                <attribute name="label" translatable="yes">_New</attribute>
+                <section>
+                <item>
+                    <attribute name="label" translatable="yes">New Data Source</attribute>
+                    <attribute name="action">win.data-source-add</attribute>
+                </item>
+                <item>
+                    <attribute name="label" translatable="yes">New Query</attribute>
+                    <attribute name="action">win.query-new</attribute>
+                </item>
+                </section>
+            </submenu>
             <section>
-            <item>
-                <attribute name="label" translatable="yes">New Data Source</attribute>
-                <attribute name="action">win.data-source-add</attribute>
-            </item>
-            <item>
-                <attribute name="label" translatable="yes">New Query</attribute>
-                <attribute name="action">win.query-new</attribute>
-            </item>
+                <item>
+                    <attribute name="label" translatable="yes">_Save</attribute>
+                    <attribute name="action">window.save</attribute>
+                    <attribute name="accel">&lt;Primary&gt;s</attribute>
+                    <attribute name="icon-name">document-save</attribute>
+                </item>
             </section>
-        </submenu>
-        <section>
-            <item>
-            <attribute name="label" translatable="yes">E_xit</attribute>
-            <attribute name="action">window.close</attribute>
-            <attribute name="accel">&lt;Primary&gt;q</attribute>
-            <attribute name="icon-name">application-exit</attribute>
-            </item>
-        </section>
+            <section>
+                <item>
+                    <attribute name="label" translatable="yes">E_xit</attribute>
+                    <attribute name="action">window.close</attribute>
+                    <attribute name="accel">&lt;Primary&gt;q</attribute>
+                    <attribute name="icon-name">application-exit</attribute>
+                </item>
+            </section>
         </submenu>
         <submenu>
         <attribute name="label" translatable="yes">Edit</attribute>
         <section>
             <item>
-            <attribute name="label" translatable="yes">Undo</attribute>
-            <attribute name="accel">&lt;Primary&gt;z</attribute>
+                <attribute name="label" translatable="yes">Undo</attribute>
+                <attribute name="accel">&lt;Primary&gt;z</attribute>
             </item>
             <item>
-            <attribute name="label" translatable="yes">Redo</attribute>
-            <attribute name="accel">&lt;Primary&gt;y</attribute>
+                <attribute name="label" translatable="yes">Redo</attribute>
+                <attribute name="accel">&lt;Primary&gt;y</attribute>
             </item>
         </section>
         <section>
             <item>
-            <attribute name="label" translatable="yes">Copy</attribute>
-            <attribute name="action">win.copy</attribute>
-            <attribute name="accel">&lt;Primary&gt;c</attribute>
+                <attribute name="label" translatable="yes">Copy</attribute>
+                <attribute name="action">win.copy</attribute>
+                <attribute name="accel">&lt;Primary&gt;c</attribute>
             </item>
             <item>
-            <attribute name="label" translatable="yes">Cut</attribute>
-            <attribute name="action">win.cut</attribute>
-            <attribute name="accel">&lt;Primary&gt;x</attribute>
+                <attribute name="label" translatable="yes">Cut</attribute>
+                <attribute name="action">win.cut</attribute>
+                <attribute name="accel">&lt;Primary&gt;x</attribute>
             </item>
             <item>
-            <attribute name="label" translatable="yes">Paste</attribute>
-            <attribute name="action">win.paste</attribute>
-            <attribute name="accel">&lt;Primary&gt;v</attribute>
+                <attribute name="label" translatable="yes">Paste</attribute>
+                <attribute name="action">win.paste</attribute>
+                <attribute name="accel">&lt;Primary&gt;v</attribute>
             </item>
         </section>
         </submenu>
         <submenu>
-        <attribute name="label" translatable="yes">_Help</attribute>
-        <section>
-            <item>
-            <attribute name="label" translatable="yes">_About</attribute>
-            </item>
-        </section>
+            <attribute name="label" translatable="yes">_Help</attribute>
+            <section>
+                <item>
+                    <attribute name="label" translatable="yes">_About</attribute>
+                </item>
+            </section>
         </submenu>
     </menu>
     <menu id="window.app.menu">
         <section>
         <item>
-            <attribute name="label" translatable="yes">Menu 1</attribute>
+            <attribute name="label" translatable="yes">Save</attribute>
         </item>
         <item>
             <attribute name="label" translatable="yes">Menu 2</attribute>
@@ -142,8 +150,8 @@
                             <object class="GtkButton">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <property name="icon-name">list-add</property>
-                                <property name="action-name">win.data-source-add</property>
+                                <property name="icon-name">document-save</property>
+                                <property name="action-name">win.document-save</property>
                             </object>
                         </child>
                         <child>
@@ -159,66 +167,114 @@
                 </child>
                 <!-- end region: main toolbar -->
 
-                <!-- region: left and right pane -->
+                <!-- region: main content -->
                 <child>
-                    <object class="GtkPaned" id="window.main.content.pane">
+                    <object class="GtkStack" id="stack">
                         <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="resize-end-child">True</property>
-                        <property name="vexpand">True</property>
+                        <property name="can-focus">False</property>
 
-                        <!-- region: left pane -->
+                        <!-- region: left and right pane -->
                         <child>
-                            <object class="GtkBox">
-                                <property name="width-request">200</property>
-                                <property name="orientation">vertical</property>
-
-                                <child>
-                                    <object class="DataSourcesView" id="dsv">
-
+                            <object class="GtkStackPage">
+                                <property name="name">panes</property>
+                                <property name="title">Panes</property>
+                                <property name="child">
+                                    <object class="GtkPaned" id="window.main.content.pane">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="resize-end-child">True</property>
+                                        <property name="vexpand">True</property>
+                
+                                        <!-- region: left pane -->
+                                        <child>
+                                            <object class="GtkBox">
+                                                <property name="width-request">200</property>
+                                                <property name="orientation">vertical</property>
+                
+                                                <child>
+                                                    <object class="DataSourcesView" id="dsv">
+                
+                                                    </object>
+                                                </child>
+                                            </object>
+                                        </child>
+                                        <!-- end region: left pane -->
+                
+                                        <!-- region: right pane-->
+                                        <child>
+                                            <object class="GtkBox">
+                                                <property name="orientation">vertical</property>
+                
+                                                <child>
+                                                    <object class="GtkNotebook" id="qp">
+                                                        
+                                                        <child>
+                                                            <object class="GtkLabel" id="notebook-content-1">
+                                                            <property name="label">Content </property>
+                                                            </object>
+                                                        </child>
+                                                        <child type="tab">
+                                                            <object class="GtkLabel" id="notebook-tab-1">
+                                                            <property name="label">Tab 1</property>
+                                                            </object>
+                                                        </child>
+                
+                                                        <child>
+                                                            <object class="GtkLabel" id="notebook-content-2">
+                                                            <property name="label">Content 2</property>
+                                                            </object>
+                                                        </child>
+                                                        <child type="tab">
+                                                            <object class="GtkLabel" id="notebook-tab-2">
+                                                            <property name="label">Tab 2</property>
+                                                            </object>
+                                                        </child>
+                                                    </object>
+                                                </child>
+                                            </object>
+                                        </child>
+                                        <!-- end region: right pane -->
                                     </object>
-                                </child>
+                                </property>
                             </object>
                         </child>
-                        <!-- end region: left pane -->
+                        <!-- end region: left and right pane -->
 
-                        <!-- region: right pane-->
+                        <!-- region: sources dialog -->
                         <child>
-                            <object class="GtkBox">
-                                <property name="orientation">vertical</property>
-
-                                <child>
-                                    <object class="GtkNotebook" id="qp">
-                                        
-                                        <child>
-                                            <object class="GtkLabel" id="notebook-content-1">
-                                            <property name="label">Content </property>
-                                            </object>
-                                        </child>
-                                        <child type="tab">
-                                            <object class="GtkLabel" id="notebook-tab-1">
-                                            <property name="label">Tab 1</property>
-                                            </object>
-                                        </child>
+                            <object class="GtkStackPage">
+                                <property name="name">sources</property>
+                                <property name="title">Sources page</property>
+                                <property name="child">
+                                    <object class="GtkBox" id="window.main.stack.sources">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="orientation">horizontal</property>
 
                                         <child>
-                                            <object class="GtkLabel" id="notebook-content-2">
-                                            <property name="label">Content 2</property>
+                                            <object class="GtkLabel">
+                                                <property name="label">label</property>
+                                                <!-- <property name="visible">True</property> -->
                                             </object>
                                         </child>
-                                        <child type="tab">
-                                            <object class="GtkLabel" id="notebook-tab-2">
-                                            <property name="label">Tab 2</property>
+                                        <child>
+                                            <object class="GtkButton">
+                                                <property name="label">Save</property>
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">True</property>
+                                                <property name="icon-name">document-save</property>
+                                                <property name="action-name">win.data-source-save</property>
                                             </object>
                                         </child>
                                     </object>
-                                </child>
+                                </property>
                             </object>
                         </child>
-                        <!-- end region: right pane -->
+                        <!-- end region: sources dialog -->
+
                     </object>
                 </child>
-                <!-- end region: left and right pane -->
+                <!-- end region: main content -->
                 
             </object><!-- #window.main.content -->
         </child>
