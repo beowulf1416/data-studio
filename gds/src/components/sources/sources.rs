@@ -67,6 +67,6 @@ impl ObjectImpl for DataSourcesView {
         // obj.setup_tasks();
         // obj.setup_callbacks();
         // obj.setup_factory();
-        // obj.setup_actions();
+        obj.setup_actions();
     }
 }

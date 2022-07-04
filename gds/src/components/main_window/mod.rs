@@ -28,8 +28,10 @@ use gtk::{
     glib::{
         clone,
         Object
-    }
+    }, subclass::prelude::ObjectSubclassExt
 };
+
+use crate::components;
 
 
 glib::wrapper! {
@@ -66,17 +68,39 @@ impl MainWindow {
 
         let window = self;
 
-        let action_new_data_source = SimpleAction::new("data-source-add", None);
-        action_new_data_source.connect_activate(clone!(@weak window => move |_, _| {
-            debug!("win.new.data-source clicked: {:?}", window);
+        let action_data_source_add = SimpleAction::new("data-source-add", None);
+        action_data_source_add.connect_activate(clone!(@weak window => move |_, _| {
+            window.data_source_add();
         }));
-        self.add_action(&action_new_data_source);
+        self.add_action(&action_data_source_add);
+
+        let action_data_source_save = SimpleAction::new("data-source-save", None);
+        action_data_source_save.connect_activate(clone!(@weak window => move |_, _| {
+            window.data_source_save();
+        }));
+        self.add_action(&action_data_source_save);
 
         let action_new_query = SimpleAction::new("query-new", None);
         action_new_query.connect_activate(clone!(@weak window => move |_, _| {
             debug!("win.query-new clicked: {:?}", window);
             // debug!("inner: {:?}", window.template_child(gtk::Notebook::static_type(), "qp"));
+            // window.test_datasource_add();
         }));
         self.add_action(&action_new_query);
+    }
+
+    fn data_source_add(&self){
+        debug!("MainWindow::data_source_add()");
+
+        let mw = main_window::MainWindow::from_instance(self);
+        mw.stack.set_visible_child_name("sources");
+    }
+
+    fn data_source_save(&self){
+        debug!("MainWindow::data_source_save()");
+
+        let mw = main_window::MainWindow::from_instance(self);
+        mw.stack.set_visible_child_name("panes");
+
     }
 }

@@ -1,5 +1,6 @@
 use log::{
-    info
+    info,
+    debug
 };
 
 // use relm4::*;
@@ -8,7 +9,11 @@ use gtk::{
     subclass::prelude::*,
     CompositeTemplate,
     glib,
-    glib::subclass::InitializingObject
+    glib::{
+        clone,
+        subclass::InitializingObject
+    },
+    gio::SimpleAction
 };
 
 use crate::components::sources::DataSourcesView;
@@ -19,14 +24,17 @@ use crate::components::sources::DataSourcesView;
 #[template(resource="/org/tomale/ds/main.ui")]
 pub struct MainWindow {
 
-        // #[template_child]
-        // pub data_sources: TemplateChild<DataSources>
+    // #[template_child]
+    // pub data_sources: TemplateChild<DataSources>
 
-        #[template_child]
-        pub dsv: TemplateChild<DataSourcesView>,
+    #[template_child]
+    pub stack: TemplateChild<gtk::Stack>,
 
-        #[template_child]
-        pub qp: TemplateChild<gtk::Notebook>,
+    #[template_child]
+    pub dsv: TemplateChild<DataSourcesView>,
+
+    #[template_child]
+    pub qp: TemplateChild<gtk::Notebook>,
 }
 
 
@@ -42,6 +50,12 @@ impl ObjectSubclass for MainWindow {
         DataSourcesView::ensure_type();
 
         klass.bind_template();
+
+        // klass.install_action("win.data-source-add", None, move |win, _, _| {
+        //     debug!("win.data-source-add");
+
+        //     // win.test_datasource_add();
+        // });
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {
@@ -66,6 +80,38 @@ impl ObjectImpl for MainWindow {
         // obj.setup_tasks();
         // obj.setup_callbacks();
         // obj.setup_factory();
+
         obj.setup_actions();
+        
+        // self.setup_actions();
+    }
+}
+
+
+impl MainWindow {
+
+    // fn test_datasource_add(&self) {
+    //     debug!("MainWindow::test_datasource_add()");
+    // }
+
+    pub fn setup_actions(&self) {
+        debug!("MainWindow::setup_actions() a");
+
+        // let window = self;
+
+        // let action_new_data_source = SimpleAction::new("data-source-add", None);
+        // action_new_data_source.connect_activate(clone!(@weak window => move |_, _| {
+        //     debug!("win.new.data-source clicked: {:?}", window);
+
+        // }));
+        // self.add_action(&action_new_data_source);
+
+        // let action_new_query = SimpleAction::new("query-new", None);
+        // action_new_query.connect_activate(clone!(@weak window => move |_, _| {
+        //     debug!("win.query-new clicked: {:?}", window);
+        //     // debug!("inner: {:?}", window.template_child(gtk::Notebook::static_type(), "qp"));
+        //     // window.test_datasource_add();
+        // }));
+        // self.add_action(&action_new_query);
     }
 }

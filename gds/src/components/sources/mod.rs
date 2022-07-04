@@ -45,17 +45,23 @@ glib::wrapper! {
 }
 
 
+impl Default for DataSourcesView {
+    fn default() -> Self {
+        return Self::new();
+    }
+}
+
+
 impl DataSourcesView {
 
     pub fn new() -> Self {
         return Object::new(&[])
             .expect("Failed to create DataSourcesView");
     }
-}
 
+    pub fn setup_actions(&self) {
+        debug!("DataSourcesView::actions()");
 
-impl Default for DataSourcesView {
-    fn default() -> Self {
-        return Self::new();
+        // let action_data_source_add = SimpleAction::new("data-source-add");
     }
 }
