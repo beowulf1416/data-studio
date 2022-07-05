@@ -4,8 +4,76 @@
         <property name="orientation">vertical</property>
 
         <child>
+            <object class="GtkGrid">
+                <child>
+                    <object class="GtkLabel">
+                        <property name="label" translatable="yes">Name</property>
+                        <layout>
+                            <property name="column">0</property>
+                            <property name="row">0</property>
+                        </layout>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkEntry">
+                        <layout>
+                            <property name="column">1</property>
+                            <property name="row">0</property>
+                        </layout>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkLabel">
+                        <property name="label" translatable="yes">Type</property>
+                        <layout>
+                            <property name="column">0</property>
+                            <property name="row">1</property>
+                        </layout>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkComboBoxText">
+                        <items>
+                            <item translatable="yes" id="id1">MSSQL</item>
+                            <item translatable="yes" id="id2">MySQL</item>
+                            <item translatable="yes" id="id1">PostgreSQL</item>
+                            <item translatable="yes" id="id1">Oracle</item>
+                        </items>
+                        <layout>
+                            <property name="column">1</property>
+                            <property name="row">1</property>
+                        </layout>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkLabel">
+                        <property name="label" translatable="yes">Host/Server</property>
+                        <layout>
+                            <property name="column">0</property>
+                            <property name="row">2</property>
+                        </layout>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkEntry">
+                        <layout>
+                            <property name="column">1</property>
+                            <property name="row">2</property>
+                        </layout>
+                    </object>
+                </child>
+
+            </object>
+        </child>
+
+        <child>
             <object class="GtkButton">
-                <property name="label">Test</property>
+                <property name="label">Close</property>
                 <property name="action-name">win.data-source-save</property>
             </object>
         </child>
