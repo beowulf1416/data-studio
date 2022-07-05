@@ -17,6 +17,7 @@ use gtk::{
 };
 
 use crate::components::sources::DataSourcesView;
+use crate::components::source::SourceView;
 
 
 
@@ -48,6 +49,7 @@ impl ObjectSubclass for MainWindow {
         info!("MainWindow::class_init()");
 
         DataSourcesView::ensure_type();
+        SourceView::ensure_type();
 
         klass.bind_template();
 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <template class="SourceView" parent="GtkBox">
+        <property name="orientation">vertical</property>
+
+        <child>
+            <object class="GtkButton">
+                <property name="label">Test</property>
+                <property name="action-name">win.data-source-save</property>
+            </object>
+        </child>
+    </template>
+</interface>

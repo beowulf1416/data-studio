@@ -246,26 +246,8 @@
                                 <property name="name">sources</property>
                                 <property name="title">Sources page</property>
                                 <property name="child">
-                                    <object class="GtkBox" id="window.main.stack.sources">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="orientation">horizontal</property>
-
-                                        <child>
-                                            <object class="GtkLabel">
-                                                <property name="label">label</property>
-                                                <!-- <property name="visible">True</property> -->
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="GtkButton">
-                                                <property name="label">Save</property>
-                                                <property name="visible">True</property>
-                                                <property name="can-focus">True</property>
-                                                <property name="icon-name">document-save</property>
-                                                <property name="action-name">win.data-source-save</property>
-                                            </object>
-                                        </child>
+                                    <object class="SourceView" id="source">
+                                        
                                     </object>
                                 </property>
                             </object>
