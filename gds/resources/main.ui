@@ -258,6 +258,19 @@
                 </child>
                 <!-- end region: main content -->
                 
+                <!-- region: status bar -->
+                <child>
+                    <object class="GtkStatusbar" id="status">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                    </object>
+                    <!-- <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                    </packing> -->
+                </child>
+                <!-- end region: status bar -->
+
             </object><!-- #window.main.content -->
         </child>
         <!-- end region: window.main.content -->

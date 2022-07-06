@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
     <template class="SourceView" parent="GtkBox">
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
 
         <child>
             <object class="GtkGrid">
+                <property name="can-focus">False</property>
+                <property name="row-spacing">5</property>
+                <property name="column-spacing">5</property>
+                <property name="row-homogeneous">True</property>
+
                 <child>
                     <object class="GtkLabel">
                         <property name="label" translatable="yes">Name</property>
@@ -17,6 +23,8 @@
 
                 <child>
                     <object class="GtkEntry">
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">Source name</property>
                         <layout>
                             <property name="column">1</property>
                             <property name="row">0</property>
@@ -36,6 +44,9 @@
 
                 <child>
                     <object class="GtkComboBoxText">
+                        <property name="tooltip-text" translatable="yes">Source Type</property>
+                        <property name="can-focus">True</property>
+                        <property name="active">0</property>
                         <items>
                             <item translatable="yes" id="id1">MSSQL</item>
                             <item translatable="yes" id="id2">MySQL</item>
@@ -61,10 +72,68 @@
 
                 <child>
                     <object class="GtkEntry">
+                        <property name="tooltip-text" translatable="yes">Host or Server name</property>
+                        <property name="can-focus">True</property>
                         <layout>
                             <property name="column">1</property>
                             <property name="row">2</property>
                         </layout>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkLabel">
+                        <property name="label" translatable="yes">User name</property>
+                        <layout>
+                            <property name="column">0</property>
+                            <property name="row">3</property>
+                        </layout>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkEntry">
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">User name</property>
+                        <layout>
+                            <property name="column">1</property>
+                            <property name="row">3</property>
+                        </layout>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkLabel">
+                        <property name="label" translatable="yes">Password</property>
+                        <layout>
+                            <property name="column">0</property>
+                            <property name="row">4</property>
+                        </layout>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkEntry">
+                        <property name="tooltip-text" translatable="yes">Password</property>
+                        <property name="can-focus">True</property>
+                        <property name="input-purpose">password</property>
+                        <layout>
+                            <property name="column">1</property>
+                            <property name="row">4</property>
+                        </layout>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkCheckButton">
+                      <property name="label" translatable="yes">Remember password</property>
+                      <property name="visible">True</property>
+                      <property name="can-focus">True</property>
+                      <property name="receives-default">False</property>
+                      <layout>
+                          <property name="column">1</property>
+                          <property name="row">5</property>
+                      </layout>
                     </object>
                 </child>
 
