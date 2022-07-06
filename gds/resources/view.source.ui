@@ -4,6 +4,40 @@
         <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
 
+        <!-- region: toolbar -->
+        <child>
+            <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="orientation">horizontal</property>
+                <style>
+                    <class name="toolbar" />
+                </style>
+
+                <child>
+                    <object class="GtkButton">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="icon-name">document-save</property>
+                        <property name="action-name">win.data-source-save</property>
+                        <property name="tooltip-text" translatable="yes">Save and Close</property>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkButton">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="icon-name">window-close</property>
+                        <property name="action-name">win.data-source-save</property>
+                        <property name="tooltip-text" translatable="yes">Close without saving</property>
+                    </object>
+                </child>
+            </object>
+        </child>
+        <!-- end region: toolbar -->
+
+        <!-- region: form -->
         <child>
             <object class="GtkGrid">
                 <property name="can-focus">False</property>
@@ -22,7 +56,7 @@
                 </child>
 
                 <child>
-                    <object class="GtkEntry">
+                    <object class="GtkEntry" id="source_name">
                         <property name="can-focus">True</property>
                         <property name="tooltip-text" translatable="yes">Source name</property>
                         <layout>
@@ -43,7 +77,7 @@
                 </child>
 
                 <child>
-                    <object class="GtkComboBoxText">
+                    <object class="GtkComboBoxText" id="source_type">
                         <property name="tooltip-text" translatable="yes">Source Type</property>
                         <property name="can-focus">True</property>
                         <property name="active">0</property>
@@ -71,7 +105,7 @@
                 </child>
 
                 <child>
-                    <object class="GtkEntry">
+                    <object class="GtkEntry" id="source_server">
                         <property name="tooltip-text" translatable="yes">Host or Server name</property>
                         <property name="can-focus">True</property>
                         <layout>
@@ -92,7 +126,7 @@
                 </child>
 
                 <child>
-                    <object class="GtkEntry">
+                    <object class="GtkEntry" id="user_name">
                         <property name="can-focus">True</property>
                         <property name="tooltip-text" translatable="yes">User name</property>
                         <layout>
@@ -113,7 +147,7 @@
                 </child>
 
                 <child>
-                    <object class="GtkEntry">
+                    <object class="GtkEntry" id="password">
                         <property name="tooltip-text" translatable="yes">Password</property>
                         <property name="can-focus">True</property>
                         <property name="input-purpose">password</property>
@@ -125,7 +159,7 @@
                 </child>
 
                 <child>
-                    <object class="GtkCheckButton">
+                    <object class="GtkCheckButton" id="remember">
                       <property name="label" translatable="yes">Remember password</property>
                       <property name="visible">True</property>
                       <property name="can-focus">True</property>
@@ -139,12 +173,13 @@
 
             </object>
         </child>
+        <!-- end region: form -->
 
-        <child>
+        <!-- <child>
             <object class="GtkButton">
                 <property name="label">Close</property>
                 <property name="action-name">win.data-source-save</property>
             </object>
-        </child>
+        </child> -->
     </template>
 </interface>

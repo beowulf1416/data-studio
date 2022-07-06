@@ -160,6 +160,7 @@
                                 <property name="can-focus">True</property>
                                 <property name="icon-name">list-add</property>
                                 <property name="action-name">win.data-source-add</property>
+                                <property name="tooltip-text" translatable="yes">Add a data source</property>
                             </object>
                         </child>
                         <!-- end region: toolbar items -->
