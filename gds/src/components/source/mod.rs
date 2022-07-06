@@ -27,7 +27,8 @@ use gtk::{
     glib::{
         clone,
         Object
-    }
+    },
+    subclass::prelude::ObjectSubclassExt
 };
 
 
@@ -61,5 +62,13 @@ impl SourceView {
 
     fn setup_actions(&self) {
         info!("SourceView::setup_actions()");
+
+        // let window = crate::components::main_window::MainWindow::from_instance(self.parent());
+
+        // let action_test = SimpleAction::new("action-test", None);
+        // action_test.connect_activate(clone!(@weak window => move |_, _| {
+        //     debug!("action_test called");
+        // }));
+        // window.add_action(&action_test);
     }
 }

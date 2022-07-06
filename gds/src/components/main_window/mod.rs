@@ -28,7 +28,8 @@ use gtk::{
     glib::{
         clone,
         Object
-    }, subclass::prelude::ObjectSubclassExt
+    }, 
+    subclass::prelude::ObjectSubclassExt
 };
 
 use crate::components;
@@ -54,11 +55,6 @@ glib::wrapper! {
 
 impl MainWindow {
 
-    // pub fn new() -> Self {
-    //     // return Object::new(&[("application", app)]).expect("Failed to create main window");
-    //     return Object::new(&[]).expect("Failed to create main window");
-    // }
-
     pub fn new(app: &Application) -> Self {
         return Object::new(&[("application", app)]).expect("Failed to create window");
     }
@@ -80,6 +76,12 @@ impl MainWindow {
         }));
         self.add_action(&action_data_source_save);
 
+        let action_data_source_close = SimpleAction::new("data-source-close", None);
+        action_data_source_close.connect_activate(clone!(@weak window => move |_, _| {
+            window.data_source_close();
+        }));
+        self.add_action(&action_data_source_close);
+
         let action_new_query = SimpleAction::new("query-new", None);
         action_new_query.connect_activate(clone!(@weak window => move |_, _| {
             debug!("win.query-new clicked: {:?}", window);
@@ -94,9 +96,9 @@ impl MainWindow {
 
         let mw = main_window::MainWindow::from_instance(self);
 
-        let context_id = mw.status.context_id("data_source_add");
+        let context_id = mw.status.context_id("data_source");
         mw.status.push(context_id, "New data source");
-        
+
         mw.stack.set_visible_child_name("sources");
     }
 
@@ -104,7 +106,21 @@ impl MainWindow {
         debug!("MainWindow::data_source_save()");
 
         let mw = main_window::MainWindow::from_instance(self);
-        mw.stack.set_visible_child_name("panes");
+        
+        let context_id = mw.status.context_id("data_source");
+        mw.status.push(context_id, "Data source added");
 
+        mw.stack.set_visible_child_name("panes");
+    }
+
+    fn data_source_close(&self) {
+        debug!("MainWindow::data_source_close()");
+
+        let mw = main_window::MainWindow::from_instance(self);
+
+        let context_id = mw.status.context_id("data_source");
+        mw.status.pop(context_id);
+
+        mw.stack.set_visible_child_name("panes");
     }
 }

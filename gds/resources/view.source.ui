@@ -29,7 +29,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="icon-name">window-close</property>
-                        <property name="action-name">win.data-source-save</property>
+                        <property name="action-name">win.data-source-close</property>
                         <property name="tooltip-text" translatable="yes">Close without saving</property>
                     </object>
                 </child>
