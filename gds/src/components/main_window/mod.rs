@@ -93,6 +93,10 @@ impl MainWindow {
         debug!("MainWindow::data_source_add()");
 
         let mw = main_window::MainWindow::from_instance(self);
+
+        let context_id = mw.status.context_id("data_source_add");
+        mw.status.push(context_id, "New data source");
+        
         mw.stack.set_visible_child_name("sources");
     }
 

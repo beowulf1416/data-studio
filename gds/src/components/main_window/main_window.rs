@@ -36,6 +36,9 @@ pub struct MainWindow {
 
     #[template_child]
     pub qp: TemplateChild<gtk::Notebook>,
+
+    #[template_child]
+    pub status: TemplateChild<gtk::Statusbar>,
 }
 
 
