@@ -24,6 +24,25 @@ impl <S: ToString> From<S> for InvocationError {
 }
 
 
+pub trait Function {
+
+    fn call(&self, args: &[f64]) -> Result<f64, InvocationError>;
+
+    fn help(&self) -> Option<&str> { None }
+}
+
+pub trait PluginRegistrar {
+    fn register_function(&mut self, name: &str, function: Box<dyn Function>);
+}
+
+#[derive(Copy, Clone)]
+pub struct PluginDeclaration {
+    pub rustc_version: &'static str,
+    pub core_version: &'static str,
+    pub register: unsafe extern "C" fn(&mut dyn PluginRegistrar),
+}
+
+
 
 #[cfg(test)]
 mod tests {
