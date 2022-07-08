@@ -177,6 +177,29 @@
                     </object>
                 </child>
 
+                <child>
+                    <object class="GtkLabel">
+                        <property name="label" translatable="yes">Additional Parameters</property>
+                        <layout>
+                            <property name="column">0</property>
+                            <property name="row">6</property>
+                        </layout>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkEntry" id="additional">
+                        <property name="visible">True</property>
+                        <property name="tooltip-text" translatable="yes">Additional parameters</property>
+                        <property name="can-focus">True</property>
+                        <property name="input-purpose">password</property>
+                        <layout>
+                            <property name="column">1</property>
+                            <property name="row">6</property>
+                        </layout>
+                    </object>
+                </child>
+
             </object>
         </child>
         <!-- end region: form -->

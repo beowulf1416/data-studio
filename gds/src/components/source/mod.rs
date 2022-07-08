@@ -56,7 +56,11 @@ impl Default for SourceView {
 pub struct SourceConfig {
     pub source_type: String,
     pub name: String,
-
+    pub host: String,
+    pub user: String,
+    pub password: String,
+    pub remember: bool,
+    pub additional: String,
 }
 
 impl SourceView {
@@ -95,7 +99,12 @@ impl SourceView {
 
         return SourceConfig { 
             source_type: String::from(type_id), 
-            name: String::from(sv.source_name.text().as_str()) 
+            name: String::from(sv.source_name.text().as_str()),
+            host: String::from(sv.source_name.text().as_str()),
+            user: String::from(sv.user_name.text().as_str()),
+            password: String::from(sv.password.text().as_str()),
+            remember: sv.remember.is_active(),
+            additional: String::from(sv.additional.text().as_str())
         };
     }
 }

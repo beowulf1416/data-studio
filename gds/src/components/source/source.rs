@@ -31,6 +31,9 @@ pub struct SourceView {
 
     #[template_child]
     pub remember: TemplateChild<gtk::CheckButton>,
+
+    #[template_child]
+    pub additional: TemplateChild<gtk::Entry>
 }
 
 
