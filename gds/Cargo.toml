@@ -18,5 +18,9 @@ gtk = { version = "*", package = "gtk4", features = ["v4_6"] }
 #relm4 = { version = "*", features = ["macros"]}
 #relm4-components = "*"
 
+libloading = "0.7.3"
+plugin = { path = "../plugin" }
+
+
 [build-dependencies]
 gio = "*"
