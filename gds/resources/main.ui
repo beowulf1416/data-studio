@@ -87,7 +87,7 @@
 
     <!-- region: MainWindow -->
     <template class="MainWindow" parent="GtkApplicationWindow">
-        <property name="can-focus">False</property>
+        <property name="can-focus">True</property>
         <property name="title" translatable="yes">Data Studio</property>
         <property name="default-width">600</property>
         <property name="default-height">400</property>
@@ -121,7 +121,7 @@
         <child>
             <object class="GtkBox" id="window.main.content">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
+                <property name="can-focus">True</property>
                 <property name="orientation">vertical</property>
 
                 <!-- region: main menu bar -->
@@ -139,7 +139,7 @@
                 <child>
                     <object class="GtkStack" id="stack">
                         <property name="visible">True</property>
-                        <property name="can-focus">False</property>
+                        <property name="can-focus">True</property>
 
                         <!-- region: sources and query pane -->
                         <child>
@@ -149,14 +149,14 @@
                                 <property name="child">
                                     <object class="GtkBox">
                                         <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
+                                        <property name="can-focus">True</property>
                                         <property name="orientation">vertical</property>
 
                                         <!-- region: main toolbar -->
                                         <child>
                                             <object class="GtkBox" id="window.main.toolbar">
                                                 <property name="visible">True</property>
-                                                <property name="can-focus">False</property>
+                                                <property name="can-focus">True</property>
                                                 <property name="orientation">horizontal</property>
                                                 <style>
                                                     <class name="toolbar" />
