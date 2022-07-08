@@ -32,7 +32,7 @@ use gtk::{
     subclass::prelude::ObjectSubclassExt
 };
 
-use crate::components;
+use crate::components::source::SourceView;
 
 
 glib::wrapper! {
@@ -107,6 +107,10 @@ impl MainWindow {
 
         let mw = main_window::MainWindow::from_instance(self);
         
+        // debug!("selected source type: {:?}", mw.source);
+        // mw.source.setup_actions();
+        debug!("source config: {:?}", mw.source.get_source_config());
+
         let context_id = mw.status.context_id("data_source");
         mw.status.push(context_id, "Data source added");
 

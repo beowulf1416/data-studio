@@ -52,6 +52,12 @@ impl Default for SourceView {
     }
 }
 
+#[derive(Debug)]
+pub struct SourceConfig {
+    pub source_type: String,
+    pub name: String,
+
+}
 
 impl SourceView {
 
@@ -60,7 +66,7 @@ impl SourceView {
             .expect("Failed to create SourceView");
     }
 
-    fn setup_actions(&self) {
+    pub fn setup_actions(&self) {
         info!("SourceView::setup_actions()");
 
         // let window = crate::components::main_window::MainWindow::from_instance(self.parent());
@@ -70,5 +76,26 @@ impl SourceView {
         //     debug!("action_test called");
         // }));
         // window.add_action(&action_test);
+    }
+
+    // pub fn get_source_type(&self) {
+    //     let sv = source::SourceView::from_instance(self);
+
+    //     debug!("selected source type: {:?}", sv.source_type.active_id());
+    // }
+
+    pub fn get_source_config(&self) -> SourceConfig {
+
+        let sv = source::SourceView::from_instance(self);
+
+        let mut type_id = String::from("");
+        if let Some(id) = sv.source_type.active_id() {
+            type_id = String::from(id.as_str());
+        }
+
+        return SourceConfig { 
+            source_type: String::from(type_id), 
+            name: String::from(sv.source_name.text().as_str()) 
+        };
     }
 }

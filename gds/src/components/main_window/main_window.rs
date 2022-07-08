@@ -39,6 +39,9 @@ pub struct MainWindow {
 
     #[template_child]
     pub status: TemplateChild<gtk::Statusbar>,
+
+    #[template_child]
+    pub source: TemplateChild<SourceView>,
 }
 
 
