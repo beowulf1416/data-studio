@@ -57,6 +57,7 @@
 
                 <child>
                     <object class="GtkEntry" id="source_name">
+                        <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="tooltip-text" translatable="yes">Source name</property>
                         <layout>
@@ -78,6 +79,7 @@
 
                 <child>
                     <object class="GtkComboBoxText" id="source_type">
+                        <property name="visible">True</property>
                         <property name="tooltip-text" translatable="yes">Source Type</property>
                         <property name="can-focus">True</property>
                         <property name="active">0</property>
@@ -106,6 +108,7 @@
 
                 <child>
                     <object class="GtkEntry" id="source_server">
+                        <property name="visible">True</property>
                         <property name="tooltip-text" translatable="yes">Host or Server name</property>
                         <property name="can-focus">True</property>
                         <layout>
@@ -127,6 +130,7 @@
 
                 <child>
                     <object class="GtkEntry" id="user_name">
+                        <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="tooltip-text" translatable="yes">User name</property>
                         <layout>
@@ -148,6 +152,7 @@
 
                 <child>
                     <object class="GtkEntry" id="password">
+                        <property name="visible">True</property>
                         <property name="tooltip-text" translatable="yes">Password</property>
                         <property name="can-focus">True</property>
                         <property name="input-purpose">password</property>
