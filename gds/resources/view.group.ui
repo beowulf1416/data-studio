@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <template class="GroupView" parent="GtkBox">
+        <property name="can-focus">True</property>
+        <property name="orientation">vertical</property>
+
+        <!-- region: header -->
+        <child>
+            <object class="GtkLabel" id="view_header">
+                <property name="label" translatable="yes">Data Group Properties</property>
+            </object>
+        </child>
+        <!-- end region: header -->
+
+        <!-- region: toolbar -->
+        <child>
+            <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="orientation">horizontal</property>
+                <style>
+                    <class name="toolbar" />
+                </style>
+
+                <child>
+                    <object class="GtkButton">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="icon-name">document-save</property>
+                        <property name="action-name">win.group-save</property>
+                        <property name="tooltip-text" translatable="yes">Save and Close</property>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkButton">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="icon-name">window-close</property>
+                        <property name="action-name">win.group-close</property>
+                        <property name="tooltip-text" translatable="yes">Close without saving</property>
+                    </object>
+                </child>
+            </object>
+        </child>
+        <!-- end region: toolbar -->
+
+        <!-- region: form -->
+        <child>
+            <object class="GtkLabel">
+                <property name="label" translatable="yes">Group Name</property>
+            </object>
+        </child>
+
+        <child>
+            <object class="GtkEntry" id="group_name">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+            </object>
+        </child>
+        <!-- end region: form -->
+
+    </template>
+</interface>

@@ -4,5 +4,8 @@
     <file compressed="true" preprocess="xml-stripblanks">main.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">view.data_sources.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">view.source.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">view.group.ui</file>
+
+    <file compressed="true" preprocess="xml-stripblanks">style.css</file>
   </gresource>
 </gresources>

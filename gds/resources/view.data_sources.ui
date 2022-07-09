@@ -18,6 +18,7 @@
                     <property name="can-focus">True</property>
                     <property name="icon-name">folder-new</property>
                     <property name="action-name">win.group-add</property>
+                    <property name="tooltip-text" translatable="yes">Add a data group</property>
                 </object>
             </child>
 
@@ -28,6 +29,7 @@
                       <property name="can-focus">True</property>
                       <property name="icon-name">list-add</property>
                       <property name="action-name">win.data-source-add</property>
+                      <property name="tooltip-text" translatable="yes">Add a data source</property>
                   </object>
               </child>
               
@@ -37,6 +39,7 @@
                       <property name="visible">True</property>
                       <property name="can-focus">True</property>
                       <property name="icon-name">list-remove</property>
+                      <property name="tooltip-text" translatable="yes">Remove a data source</property>
                   </object>
               </child>
             </object>

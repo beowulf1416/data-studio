@@ -268,6 +268,20 @@
                         </child>
                         <!-- end region: sources dialog -->
 
+                        <!-- region: group properties -->
+                        <child>
+                            <object class="GtkStackPage">
+                                <property name="name">group</property>
+                                <property name="title">Group page</property>
+                                <property name="child">
+                                    <object class="GroupView" id="group">
+                                        
+                                    </object>
+                                </property>
+                            </object>
+                        </child>
+                        <!-- end region: group properties -->
+
                     </object>
                 </child>
                 <!-- end region: main content -->

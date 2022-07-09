@@ -4,6 +4,14 @@
         <property name="can-focus">True</property>
         <property name="orientation">vertical</property>
 
+        <!-- region: header -->
+        <child>
+            <object class="GtkLabel" id="view_header">
+                <property name="label" translatable="yes">Data Source Properties</property>
+            </object>
+        </child>
+        <!-- end region: header -->
+
         <!-- region: toolbar -->
         <child>
             <object class="GtkBox">
