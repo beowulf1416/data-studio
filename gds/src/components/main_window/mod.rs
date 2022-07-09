@@ -32,7 +32,7 @@ use gtk::{
     subclass::prelude::ObjectSubclassExt
 };
 
-use crate::components::source::SourceView;
+// use crate::components::source::SourceView;
 
 
 glib::wrapper! {
@@ -64,6 +64,24 @@ impl MainWindow {
 
         let window = self;
 
+        let action_group_add = SimpleAction::new("group-add", None);
+        action_group_add.connect_activate(clone!(@weak window => move |_, _| {
+            window.group_add();
+        }));
+        self.add_action(&action_group_add);
+
+        let action_group_close = SimpleAction::new("group-close", None);
+        action_group_close.connect_activate(clone!(@weak window => move |_, _| {
+            window.group_close();
+        }));
+        self.add_action(&action_group_close);
+
+        let action_group_save = SimpleAction::new("group-save", None);
+        action_group_save.connect_activate(clone!(@weak window => move |_, _| {
+            window.group_save();
+        }));
+        self.add_action(&action_group_save);
+
         let action_data_source_add = SimpleAction::new("data-source-add", None);
         action_data_source_add.connect_activate(clone!(@weak window => move |_, _| {
             window.data_source_add();
@@ -89,6 +107,41 @@ impl MainWindow {
             // window.test_datasource_add();
         }));
         self.add_action(&action_new_query);
+    }
+
+    fn group_add(&self) {
+        debug!("MainWindow::group_add()");
+
+        let mw = main_window::MainWindow::from_instance(self);
+
+        let context_id = mw.status.context_id("data_group");
+        mw.status.push(context_id, "New data group source");
+
+        mw.stack.set_visible_child_name("group");
+    }
+
+    fn group_close(&self) {
+        debug!("MainWindow::group_close()");
+
+        let mw = main_window::MainWindow::from_instance(self);
+
+        let context_id = mw.status.context_id("data_group");
+        mw.status.pop(context_id);
+
+        mw.stack.set_visible_child_name("panes");
+    }
+
+    fn group_save(&self) {
+        debug!("MainWindow::group_save()");
+        let mw = main_window::MainWindow::from_instance(self);
+
+        let context_id = mw.status.context_id("data_group");
+        mw.status.pop(context_id);
+
+        let group = mw.group.get_group_config();
+        debug!("group config: {:?}", group);
+
+        mw.stack.set_visible_child_name("panes");
     }
 
     fn data_source_add(&self){

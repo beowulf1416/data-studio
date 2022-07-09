@@ -16,8 +16,11 @@ use gtk::{
     gio::SimpleAction
 };
 
-use crate::components::sources::DataSourcesView;
-use crate::components::source::SourceView;
+use crate::components::{
+    sources::DataSourcesView,
+    source::SourceView,
+    group::GroupView
+};
 
 
 
@@ -42,6 +45,9 @@ pub struct MainWindow {
 
     #[template_child]
     pub source: TemplateChild<SourceView>,
+
+    #[template_child]
+    pub group: TemplateChild<GroupView>,
 }
 
 
@@ -56,6 +62,8 @@ impl ObjectSubclass for MainWindow {
 
         DataSourcesView::ensure_type();
         SourceView::ensure_type();
+        GroupView::ensure_type();
+
 
         klass.bind_template();
 

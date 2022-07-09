@@ -18,7 +18,10 @@ use log::{
 use gtk::{
     prelude::*,
     gio,
-    Application
+    Application, 
+    CssProvider,
+    StyleContext,
+    gdk::Display
 };
 
 use crate::components::main_window::MainWindow;
@@ -47,6 +50,7 @@ fn main() {
     // let relm = RelmApp::with_app(model, app);
     // relm.run();
 
+    app.connect_startup(|_| load_css());
     app.connect_activate(build_ui);
     app.run();
 
@@ -56,4 +60,15 @@ fn main() {
 fn build_ui(app: &gtk::Application) {
     let window = MainWindow::new(app);
     window.show();
+}
+
+fn load_css() {
+    let provider = CssProvider::new();
+    provider.load_from_resource("/org/tomale/ds//style.css");
+
+    StyleContext::add_provider_for_display(
+        &Display::default().expect("Could not connect to a display"), 
+        &provider, 
+        gtk::STYLE_PROVIDER_PRIORITY_APPLICATION
+    );
 }

@@ -2,6 +2,7 @@ pub mod main_window;
 
 mod sources;
 mod source;
+mod group;
 
 /*
 use log::{
