@@ -1,4 +1,5 @@
 pub mod sources;
+pub mod tree;
 
 use log::{
     info,
@@ -6,28 +7,29 @@ use log::{
 };
 
 use gtk::{
-    prelude::*,
-    // subclass::prelude::*,
-    Accessible,
-    Application,
-    ApplicationWindow,
-    Buildable,
-    ConstraintTarget,
-    Native,
-    Root,
-    ShortcutManager,
-    Window,
-    Widget,
-    gio::{
-        ActionGroup,
-        ActionMap,
-        SimpleAction
-    },
+    // prelude::*,
+    // // subclass::prelude::*,
+    // Accessible,
+    // Application,
+    // ApplicationWindow,
+    // Buildable,
+    // ConstraintTarget,
+    // Native,
+    // Root,
+    // ShortcutManager,
+    // Window,
+    // Widget,
+    // gio::{
+    //     ActionGroup,
+    //     ActionMap,
+    //     SimpleAction
+    // },
     glib,
     glib::{
-        clone,
+        // clone,
         Object
-    }
+    }, 
+    subclass::prelude::ObjectSubclassExt
 };
 
 
@@ -63,5 +65,19 @@ impl DataSourcesView {
         debug!("DataSourcesView::actions()");
 
         // let action_data_source_add = SimpleAction::new("data-source-add");
+    }
+
+    pub fn group_add(&self, name: String) {
+        debug!("DataSourcesView::group_add()");
+
+        let ds = sources::DataSourcesView::from_instance(self);
+
+        // ds.tv.model().insert_with_values(
+        //     None,
+        //     None,
+        //     &[
+        //         (0, name)
+        //     ]
+        // );
     }
 }

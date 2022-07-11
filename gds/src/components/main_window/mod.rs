@@ -141,6 +141,8 @@ impl MainWindow {
         let group = mw.group.get_group_config();
         debug!("group config: {:?}", group);
 
+        mw.dsv.group_add(group.name);
+
         mw.stack.set_visible_child_name("panes");
     }
 

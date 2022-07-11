@@ -10,6 +10,8 @@ use gtk::{
     // glib::subclass::InitializingObject
 };
 
+use crate::components::sources::tree::Tree;
+
 
 #[derive(CompositeTemplate, Default)]
 #[template(resource="/org/tomale/ds/view.data_sources.ui")]
@@ -17,6 +19,7 @@ pub struct DataSourcesView {
     #[template_child]
     pub tv: TemplateChild<gtk::TreeView>
 }
+
 
 
 #[glib::object_subclass]
@@ -48,21 +51,23 @@ impl ObjectImpl for DataSourcesView {
         
         self.parent_constructed(obj);
 
-        // let tm = gtk::TreeModel();
-        let ts = gtk::TreeStore::new(&[
-            String::static_type()
-        ]);
+        // // let tm = gtk::TreeModel();
+        // let ts = gtk::TreeStore::new(&[
+        //     String::static_type()
+        // ]);
 
-        for i in 0..10 {
-            ts.insert_with_values(
-                None, 
-                None,
-                &[
-                    (0, &i.to_string())
-                ]
-            );
-        }
-        self.tv.set_model(Some(&ts));
+        // for i in 0..10 {
+        //     ts.insert_with_values(
+        //         None, 
+        //         None,
+        //         &[
+        //             (0, &i.to_string())
+        //         ]
+        //     );
+        // }
+        // self.tv.set_model(Some(&ts));
+
+        let tree = Tree::new();
 
         // obj.setup_tasks();
         // obj.setup_callbacks();
